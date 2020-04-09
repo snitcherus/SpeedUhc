@@ -6,5 +6,4 @@ main: '${project.groupId}.${project.artifactId}.${project.name}Plugin'
 api-version: 1.15
 
 commands:
-  test:
-    
+  damage:

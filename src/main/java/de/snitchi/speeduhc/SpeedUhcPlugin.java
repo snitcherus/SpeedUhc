@@ -1,5 +1,7 @@
 package de.snitchi.speeduhc;
 
+import de.snitchi.commands.DamageCmd;
+import de.snitchi.listener.RegenerationListener;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -54,11 +56,13 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
   private void registerListener() {
     // getServer().getPluginManager().registerEvents(new ListenerName(), this);
+    getServer().getPluginManager().registerEvents(new RegenerationListener(), this);
 
   }
 
   private void registerCommands() {
     // getCommand("Name").setExecutor(new NameCmd());
+    getCommand("damage").setExecutor(new DamageCmd());
 
   }
 
