@@ -15,17 +15,15 @@ public class BlockBreakListener implements Listener {
   @EventHandler
   public void onBreak(BlockBreakEvent event){
 
-    Material material = event.getBlock().getType();
     Block block = event.getBlock();
-
     Player player = event.getPlayer();
 
-    switch(material){
+    switch(block.getType()){
       case IRON_ORE:
-        instantOreSmelt(player, Material.IRON_ORE, block);
+        instantOreSmelt(player, Material.IRON_INGOT, block);
         break;
       case GOLD_ORE:
-        instantOreSmelt(player, Material.GOLD_ORE, block);
+        instantOreSmelt(player, Material.GOLD_INGOT, block);
         break;
       case COAL_ORE:
         instantOreSmelt(player, Material.TORCH, block);
