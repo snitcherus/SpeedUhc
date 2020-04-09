@@ -1,0 +1,6 @@
+prefix: '&7[&cSpeedUHC]&r '
+msgprefix: '&8[&cMSG&8]&r '
+
+System:
+  playerNotFound: "Der Spieler {0} wurde nicht gefunden!"
+  noPerms: "Dazu hast du keine Rechte"
