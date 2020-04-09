@@ -29,22 +29,30 @@ public class BlockBreakListener implements Listener {
         instantOreSmelt(player, Material.TORCH, block);
         break;
       case ACACIA_LOG:
-        instantLogSmelt(player, Material.ACACIA_PLANKS, block);
+        instantLogSmelt(Material.ACACIA_PLANKS, block);
         break;
       case BIRCH_LOG:
-        instantLogSmelt(player, Material.BIRCH_PLANKS, block);
+        instantLogSmelt(Material.BIRCH_PLANKS, block);
         break;
       case DARK_OAK_LOG:
-        instantLogSmelt(player, Material.DARK_OAK_PLANKS, block);
+        instantLogSmelt(Material.DARK_OAK_PLANKS, block);
         break;
       case JUNGLE_LOG:
-        instantLogSmelt(player, Material.JUNGLE_PLANKS, block);
+        instantLogSmelt(Material.JUNGLE_PLANKS, block);
         break;
       case OAK_LOG:
-        instantLogSmelt(player, Material.OAK_PLANKS, block);
+        instantLogSmelt(Material.OAK_PLANKS, block);
         break;
       case SPRUCE_LOG:
-        instantLogSmelt(player, Material.SPRUCE_PLANKS, block);
+        instantLogSmelt(Material.SPRUCE_PLANKS, block);
+        break;
+      case GRASS_BLOCK:
+        instantBlockSmelt(Material.DIRT, block);
+        break;
+      default:
+        Material material = block.getType();
+        itemStack = new ItemStack(material);
+        block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
         break;
     }
   }
@@ -68,10 +76,25 @@ public class BlockBreakListener implements Listener {
     block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
   }
 
-  public void instantLogSmelt(Player player, Material material, Block block){
+  /**
+   * @param material the dropped item
+   * @param block the breaked block
+   */
+  public void instantLogSmelt(Material material, Block block){
     block.setType(Material.AIR);
     itemStack = new ItemStack(material);
     itemStack.setAmount(4);
+    block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
+  }
+
+  /**
+   * @param material the dropped item
+   * @param block the breaked block
+   */
+  public void instantBlockSmelt(Material material, Block block){
+    block.setType(Material.AIR);
+    itemStack = new ItemStack(material);
+    itemStack.setAmount(1);
     block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
   }
 }
