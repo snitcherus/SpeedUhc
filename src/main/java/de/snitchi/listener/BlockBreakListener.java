@@ -71,7 +71,7 @@ public class BlockBreakListener implements Listener {
       return;
 
     block.setType(Material.AIR);
-    player.giveExp(1);
+    player.giveExp(2);
     itemStack = new ItemStack(material);
     block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
   }
