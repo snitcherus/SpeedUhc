@@ -11,22 +11,22 @@ public class DamageCmd implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
-    if(!(sender instanceof Player)){
+    if (!(sender instanceof Player)) {
       return true;
     }
 
     Player player = (Player) sender;
 
-    if(!(player.isOp())){
+    if (!(player.isOp())) {
       return true;
     }
 
-    if(args.length > 2){
+    if (args.length > 2) {
       Messages.send(player, "Damage.usage");
       return true;
     }
 
-    switch(args.length){
+    switch (args.length) {
       case 0:
         Messages.send(player, "Damage.usage");
         break;
@@ -34,7 +34,7 @@ public class DamageCmd implements CommandExecutor {
 
         int damage = Integer.parseInt(args[0]);
 
-        if(damage <= 0){
+        if (damage <= 0) {
           Messages.send(player, "Damage.usage");
           break;
         }
@@ -46,19 +46,19 @@ public class DamageCmd implements CommandExecutor {
 
         damage = Integer.parseInt(args[1]);
 
-        if(damage <= 0){
+        if (damage <= 0) {
           Messages.send(player, "Damage.usage");
           break;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
 
-        if(target == null){
+        if (target == null) {
           Messages.send(player, "System.playerNotFound", args[0]);
           break;
         }
 
-        if(target == player) {
+        if (target == player) {
           player.damage(damage);
           Messages.send(player, "Damage.success", damage + "");
           break;
