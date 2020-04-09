@@ -10,13 +10,11 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 
 public class RegenerationListener implements Listener {
 
   @EventHandler
   public void onRegeneration(EntityRegainHealthEvent event){
-    Player player = (Player) event.getEntity();
     if(event.getRegainReason() != EntityRegainHealthEvent.RegainReason.EATING){
       return;
     }
