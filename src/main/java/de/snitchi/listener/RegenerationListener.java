@@ -33,10 +33,10 @@ public class RegenerationListener implements Listener {
 
     switch(item.getItemMeta().getDisplayName()){
       case "§3Player Head":
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 10, 2));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 10, 1));
         break;
       case "§3Golden Apple":
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 10, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 10, 0));
         break;
     }
   }

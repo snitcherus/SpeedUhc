@@ -10,3 +10,7 @@ Damage:
   success: "{prefix}&aDu hast dir &e{0} &aHerzen abgezogen!"
   successTarget: "{prefix}&aDu hast &e{0} {1} &aHerzen abgezogen!"
   target: "{prefix}&aDir wurden &e{0} &aHerzen von &e{1} &aabzezogen!"
+
+Head:
+  usage: "{prefix}&7Richtige Nutzung: &c/head [amount]"
+  success: "{prefix}&aDu hast dir einen &3Player-Head &agegeben!"
