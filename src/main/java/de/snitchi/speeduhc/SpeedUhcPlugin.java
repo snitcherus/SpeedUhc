@@ -2,6 +2,7 @@ package de.snitchi.speeduhc;
 
 import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.HeadCmd;
+import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.RegenerationListener;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -58,6 +59,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
   private void registerListener() {
     // getServer().getPluginManager().registerEvents(new ListenerName(), this);
     getServer().getPluginManager().registerEvents(new RegenerationListener(), this);
+    getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
 
   }
 
