@@ -18,3 +18,11 @@ Damage:
 Head:
   usage: "{prefix}&7Richtige Nutzung: &c/head [amount]"
   success: "{prefix}&aDu hast dir einen &3Player-Head &agegeben!"
+
+Scoreboard:
+  title: "&cSpeed-UHC"
+  empty: "&r"
+  coins: "&eCoins &8: &e{0}"
+  kills: "&eKills &8: &e{0}"
+  deaths: "&eDeaths &8: &e{0}"
+  kd: "&eK/D &8: &e{0}"

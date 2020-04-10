@@ -1,6 +1,7 @@
 package de.snitchi.listener;
 
 import de.snitchi.speeduhc.Messages;
+import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -31,6 +32,8 @@ public class PlayerDeathListener implements Listener {
       userConfig.set(player.getUniqueId() + ".Deaths", suicide);
       SpeedUhcPlugin.getInstance().saveUserConfig();
       Bukkit.broadcastMessage(Messages.getMsg("System.suicide", player.getDisplayName()));
+
+      Scoreboard.setScoreboard(player);
       return;
     }
 
@@ -40,6 +43,8 @@ public class PlayerDeathListener implements Listener {
     userConfig.set(target.getUniqueId() + ".Kills", kill);
     userConfig.set(player.getUniqueId() + ".Deaths", death);
     SpeedUhcPlugin.getInstance().saveUserConfig();
+
+    Scoreboard.setScoreboard(player);
 
     player.setGameMode(GameMode.SPECTATOR);
 

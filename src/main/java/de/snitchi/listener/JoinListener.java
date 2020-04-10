@@ -1,5 +1,6 @@
 package de.snitchi.listener;
 
+import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.Configuration;
@@ -19,6 +20,7 @@ public class JoinListener implements Listener {
     Configuration userConfig = SpeedUhcPlugin.getInstance().getUserConfig();
 
     player.setGameMode(GameMode.ADVENTURE);
+    Scoreboard.setScoreboard(player);
 
     if(!(userConfig.isSet(player.getUniqueId() + ""))){
 
@@ -30,8 +32,9 @@ public class JoinListener implements Listener {
       userConfig.set(player.getUniqueId() + ".Played_Games", 0);
       userConfig.set(player.getUniqueId() + ".Wins", 0);
       userConfig.set(player.getUniqueId() + ".Loses", 0);
-
       SpeedUhcPlugin.getInstance().saveUserConfig();
+
+      Scoreboard.setScoreboard(player);
       return;
     }
   }
