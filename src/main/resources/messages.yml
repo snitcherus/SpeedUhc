@@ -15,6 +15,8 @@ Lobby:
   count: "{prefix}&7Das Spiel beginnt in &a{0} &7Sekunden!"
   needPlayers: "{prefix}&7Es fehlen &e{0} &7Spieler zum Starten!"
   join: "{prefix}&7Der Spieler &e{0} &7hat das Spiel betreten!"
+  quit: "{prefix}&7Der Spieler &e{0} &7hat das Spiel verlassen!"
+
 Game:
   begin: "{prefix}&7Das Spiel beginnt nun!"
 

@@ -26,6 +26,10 @@ public class JoinListener implements Listener {
 
     switch(gameState){
       case LOBBY:
+
+        player.getInventory().clear();
+        player.getActivePotionEffects().clear();
+
         Location location = (Location) config.get("Game.Lobby.pos");
         player.setGameMode(GameMode.ADVENTURE);
         player.teleport(location);
