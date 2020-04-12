@@ -2,7 +2,7 @@ prefix: '&7[&cSpeedUHC&7]&r '
 msgprefix: '&8[&cMSG&8]&r '
 
 System:
-  playerNotFound: "Der Spieler {0} wurde nicht gefunden!"
+  playerNotFound: "{prefix}&7Der Spieler &e{0} &7wurde nicht gefunden!"
   noPerms: "{prefix}&cDazu hast du keine Rechte"
   suicide: "{prefix}&7Der Spieler &e{0} &7ist gestorben!"
   kill: "{prefix}&e{0} &7wurde von &e{1} &7umgebracht!"
@@ -16,6 +16,14 @@ Lobby:
   needPlayers: "{prefix}&7Es fehlen &e{0} &7Spieler zum Starten!"
   join: "{prefix}&7Der Spieler &e{0} &7hat das Spiel betreten!"
   quit: "{prefix}&7Der Spieler &e{0} &7hat das Spiel verlassen!"
+
+Stats:
+  stats: "&7------> Statistiken <------\n&7➤ &cKills &7>> &b{0}\n&7➤ &cTode &7>> &b{1}\n&7➤ &cK/D &7>> &b{2}"
+  targetStats: "&7------> Statistiken von &3{0} &7<------\n&7➤ &cKills &7>> &b{1}\n&7➤ &cTode &7>> &b{2}\n&7➤ &cK/D &7>> &b{3}"
+  resetUsage: "{prefix}&7Richtige Nutzung: &c/reset [name]"
+  reset: "{prefix}&7Du hast die Stats von &e{0} &7 zurückgesetzt!"
+  targetReset: "{prefix}&7Deine Stats wurden zurückgesetzt!"
+  usage: "{prefix}&7Richtige Nutzung: &c/stats &7|| &c/stats [name]"
 
 Game:
   begin: "{prefix}&7Das Spiel beginnt nun!"
