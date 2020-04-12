@@ -20,7 +20,7 @@ import java.nio.file.Files;
 
 public class SpeedUhcPlugin extends JavaPlugin {
 
-  public static GameState gameState = GameState.LOBBY;
+  public static GameState gameState;
   private static SpeedUhcPlugin instance;
   private Configuration msgConfig;
   private FileConfiguration userConfig;
