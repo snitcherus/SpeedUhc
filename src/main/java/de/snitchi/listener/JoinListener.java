@@ -3,6 +3,7 @@ package de.snitchi.listener;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,9 +19,13 @@ public class JoinListener implements Listener {
     Player player = event.getPlayer();
 
     Configuration userConfig = SpeedUhcPlugin.getInstance().getUserConfig();
+    Configuration config = SpeedUhcPlugin.getInstance().getConfig();
 
     player.setGameMode(GameMode.ADVENTURE);
     Scoreboard.setScoreboard(player);
+
+    Location location = (Location) config.get("Game.Lobby.pos");
+    player.teleport(location);
 
     if(!(userConfig.isSet(player.getUniqueId() + ""))){
 

@@ -17,7 +17,7 @@ public class SetLobbyCmd implements CommandExecutor {
     }
 
     Player player = (Player) sender;
-    if (!player.hasPermission("uhc.setlobby") || player.isOp()) {
+    if (!player.hasPermission("uhc.setlobby") || !player.isOp()) {
       Messages.send(player, "System.noPerms");
       return true;
     }
@@ -28,7 +28,7 @@ public class SetLobbyCmd implements CommandExecutor {
     }
 
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
-    config.set("Game.Lobby", player.getLocation());
+    config.set("Game.Lobby.pos", player.getLocation());
     SpeedUhcPlugin.getInstance().saveConfig();
 
     Messages.send(player, "Lobby.success");
