@@ -14,7 +14,7 @@ Lobby:
   success: "{prefix}&7Du hast die Lobby &aerfolgreich &7gesetzt!"
   count: "{prefix}&7Das Spiel beginnt in &a{0} &7Sekunden!"
   needPlayers: "{prefix}&7Es fehlen &e{0} &7Spieler zum Starten!"
-
+  join: "{prefix}&7Der Spieler &e{0} &7hat das Spiel betreten!"
 Game:
   begin: "{prefix}&7Das Spiel beginnt nun!"
 
