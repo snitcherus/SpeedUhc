@@ -12,6 +12,11 @@ System:
 Lobby:
   usage: "{prefix}&7Richtige Nutzung: &c/setlobby"
   success: "{prefix}&7Du hast die Lobby &aerfolgreich &7gesetzt!"
+  count: "{prefix}&7Das Spiel beginnt in &a{0} &7Sekunden!"
+  needPlayers: "{prefix}&7Es fehlen &e{0} &7Spieler zum Starten!"
+
+Game:
+  begin: "{prefix}&7Das Spiel beginnt nun!"
 
 Damage:
   usage: "{prefix}&7Richtige Nutzung: &c/damage [name] [number of hearts]"

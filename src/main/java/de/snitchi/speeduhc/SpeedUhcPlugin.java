@@ -7,6 +7,7 @@ import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.JoinListener;
 import de.snitchi.listener.PlayerDeathListener;
 import de.snitchi.listener.RegenerationListener;
+import de.snitchi.manager.GameState;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,6 +20,7 @@ import java.nio.file.Files;
 
 public class SpeedUhcPlugin extends JavaPlugin {
 
+  public static GameState gameState = GameState.LOBBY;
   private static SpeedUhcPlugin instance;
   private Configuration msgConfig;
   private FileConfiguration userConfig;
@@ -34,6 +36,8 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
     registerCommands();
     registerListener();
+
+    LobbyCount.start();
   }
 
   public static SpeedUhcPlugin getInstance() {
