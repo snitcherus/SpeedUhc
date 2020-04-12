@@ -2,6 +2,7 @@ package de.snitchi.speeduhc;
 
 import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.HeadCmd;
+import de.snitchi.commands.SetLobbyCmd;
 import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.JoinListener;
 import de.snitchi.listener.PlayerDeathListener;
@@ -71,6 +72,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     // getCommand("Name").setExecutor(new NameCmd());
     getCommand("damage").setExecutor(new DamageCmd());
     getCommand("head").setExecutor(new HeadCmd());
+    getCommand("setlobby").setExecutor(new SetLobbyCmd());
 
   }
 

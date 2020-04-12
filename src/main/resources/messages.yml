@@ -3,11 +3,15 @@ msgprefix: '&8[&cMSG&8]&r '
 
 System:
   playerNotFound: "Der Spieler {0} wurde nicht gefunden!"
-  noPerms: "Dazu hast du keine Rechte"
+  noPerms: "{prefix}&cDazu hast du keine Rechte"
   suicide: "{prefix}&7Der Spieler &e{0} &7ist gestorben!"
   kill: "{prefix}&e{0} &7wurde von &e{1} &7umgebracht!"
   death: "{prefix}&7Du wurdest von &e{0} &7umgebracht!"
   killer: "{prefix}&7Du hast &e{0} &7umgebracht!"
+
+Lobby:
+  usage: "{prefix}&7Richtige Nutzung: &c/setlobby"
+  success: "{prefix}&7Du hast die Lobby &aerfolgreich &7gesetzt!"
 
 Damage:
   usage: "{prefix}&7Richtige Nutzung: &c/damage [name] [number of hearts]"
