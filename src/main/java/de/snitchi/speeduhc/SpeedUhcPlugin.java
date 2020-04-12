@@ -4,8 +4,10 @@ import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.HeadCmd;
 import de.snitchi.commands.SetLobbyCmd;
 import de.snitchi.listener.BlockBreakListener;
+import de.snitchi.listener.InteractListener;
 import de.snitchi.listener.JoinListener;
 import de.snitchi.listener.PlayerDeathListener;
+import de.snitchi.listener.QuitListener;
 import de.snitchi.listener.RegenerationListener;
 import de.snitchi.manager.GameState;
 import org.bukkit.configuration.Configuration;
@@ -68,7 +70,9 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new RegenerationListener(), this);
     getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
     getServer().getPluginManager().registerEvents(new JoinListener(), this);
+    getServer().getPluginManager().registerEvents(new QuitListener(), this);
     getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+    getServer().getPluginManager().registerEvents(new InteractListener(), this);
 
   }
 

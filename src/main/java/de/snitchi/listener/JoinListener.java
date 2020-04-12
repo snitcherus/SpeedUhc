@@ -1,17 +1,19 @@
 package de.snitchi.listener;
 
 import de.snitchi.manager.GameState;
+import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 
 public class JoinListener implements Listener {
 
@@ -24,11 +26,18 @@ public class JoinListener implements Listener {
 
     GameState gameState = SpeedUhcPlugin.gameState;
 
+    player.getInventory().clear();
+    player.getActivePotionEffects().clear();
+
+    ItemBuilder builder = new ItemBuilder(Material.MAGMA_CREAM);
+    builder.setAmount(1);
+    Inventory inventory = player.getInventory();
+
     switch(gameState){
       case LOBBY:
 
-        player.getInventory().clear();
-        player.getActivePotionEffects().clear();
+        builder.setDisplayName("§cLobby Verlassen");
+        inventory.setItem(8, builder.build());
 
         Location location = (Location) config.get("Game.Lobby.pos");
         player.setGameMode(GameMode.ADVENTURE);
@@ -40,6 +49,10 @@ public class JoinListener implements Listener {
         break;
       case INGAME:
       case END:
+
+        builder.setDisplayName("§cSpiel Verlassen");
+        inventory.setItem(8, builder.build());
+
         player.setGameMode(GameMode.SPECTATOR);
         event.setJoinMessage(null);
         break;
