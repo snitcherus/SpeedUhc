@@ -11,19 +11,24 @@ import de.snitchi.listener.PlayerDeathListener;
 import de.snitchi.listener.QuitListener;
 import de.snitchi.listener.RegenerationListener;
 import de.snitchi.manager.GameState;
+import de.snitchi.manager.PlayerState;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.List;
 
 public class SpeedUhcPlugin extends JavaPlugin {
 
-  public static GameState gameState;
+  public static GameState gameState = GameState.LOBBY;
+  public static PlayerState playerState = PlayerState.ALIVE;
+  public static List<Player> alive;
   private static SpeedUhcPlugin instance;
   private Configuration msgConfig;
   private FileConfiguration userConfig;
@@ -41,6 +46,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     registerListener();
 
     LobbyCount.start();
+    IngameCount.start();
   }
 
   public static SpeedUhcPlugin getInstance() {
@@ -76,6 +82,8 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new InteractListener(), this);
 
   }
+
+
 
   private void registerCommands() {
     // getCommand("Name").setExecutor(new NameCmd());

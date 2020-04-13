@@ -2,6 +2,7 @@ package de.snitchi.speeduhc;
 
 import de.snitchi.manager.GameState;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
@@ -17,15 +18,12 @@ public class LobbyCount {
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
     int playersToStart = config.getInt("playersToStart");
 
-    SpeedUhcPlugin.gameState = GameState.LOBBY;
-
     //runnable
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
       if (Bukkit.getOnlinePlayers().size() < playersToStart) {
 
           if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
-            System.out.println("wrong gamestate");
             return;
           }
 
@@ -62,6 +60,10 @@ public class LobbyCount {
           //teleport einfügen
           Location location = (Location) config.get("Game.Lobby.pos");
           player.teleport(location);
+
+          SpeedUhcPlugin.alive.add(player);
+
+          player.setGameMode(GameMode.SURVIVAL);
 
           player.getInventory().clear();
           player.setFoodLevel(20);

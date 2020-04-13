@@ -46,6 +46,8 @@ public class PlayerDeathListener implements Listener {
 
     Scoreboard.setScoreboard(player);
 
+    SpeedUhcPlugin.alive.remove(player);
+
     player.setGameMode(GameMode.SPECTATOR);
 
     Messages.send(player, ".System.death", target.getDisplayName());

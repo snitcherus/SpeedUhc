@@ -17,6 +17,10 @@ Lobby:
   join: "{prefix}&7Der Spieler &e{0} &7hat das Spiel betreten!"
   quit: "{prefix}&7Der Spieler &e{0} &7hat das Spiel verlassen!"
 
+Ingame:
+  count: "{prefix}&7Das Deathmatch beginnt in &a{0} &7Minuten!"
+  deathmatch: "{prefix}&7Das Deathmatch beginnt nun!"
+
 Stats:
   stats: "&7------> Statistiken <------\n&7➤ &cKills &7>> &b{0}\n&7➤ &cTode &7>> &b{1}\n&7➤ &cK/D &7>> &b{2}"
   targetStats: "&7------> Statistiken von &3{0} &7<------\n&7➤ &cKills &7>> &b{1}\n&7➤ &cTode &7>> &b{2}\n&7➤ &cK/D &7>> &b{3}"
