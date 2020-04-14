@@ -61,8 +61,6 @@ public class LobbyCount {
           Location location = (Location) config.get("Game.Lobby.pos");
           player.teleport(location);
 
-          SpeedUhcPlugin.alive.add(player);
-
           player.setGameMode(GameMode.SURVIVAL);
 
           player.getInventory().clear();
