@@ -28,7 +28,6 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
   public static GameState gameState = GameState.LOBBY;
   public static PlayerState playerState = PlayerState.ALIVE;
-  public static List<Player> alive;
   private static SpeedUhcPlugin instance;
   private Configuration msgConfig;
   private FileConfiguration userConfig;

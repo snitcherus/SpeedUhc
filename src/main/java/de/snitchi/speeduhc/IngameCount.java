@@ -35,10 +35,6 @@ public class IngameCount {
           Bukkit.broadcastMessage(Messages.getMsg("Ingame.deathmatch"));
           SpeedUhcPlugin.gameState = GameState.DEATHMATCH;
 
-          for(Player player : SpeedUhcPlugin.alive){
-            Bukkit.broadcastMessage("Aliiive");
-          }
-
           Bukkit.getScheduler().cancelTask(startID);
           break;
       }
