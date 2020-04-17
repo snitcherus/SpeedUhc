@@ -1,6 +1,7 @@
 package de.snitchi.countdown;
 
 import de.snitchi.manager.GameState;
+import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
@@ -26,14 +27,18 @@ public class EndCount {
         return;
       }
 
+      Bukkit.broadcastMessage(Messages.getMsg("End.count", timeToCount + ""));
+
       if(timeToCount == 0){
 
         for(Player player : Bukkit.getOnlinePlayers()){
           player.kickPlayer("");
         }
 
-      }
+        Bukkit.shutdown();
 
+      }
+      timeToCount--;
     },0L,20L);
 
   }

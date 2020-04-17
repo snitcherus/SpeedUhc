@@ -28,6 +28,5 @@ public class InteractListener implements Listener {
         player.kickPlayer("");
         break;
     }
-
   }
 }

@@ -4,6 +4,7 @@ import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.HeadCmd;
 import de.snitchi.commands.SetLobbyCmd;
 import de.snitchi.commands.StatsCmd;
+import de.snitchi.countdown.EndCount;
 import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.InteractListener;
 import de.snitchi.listener.JoinListener;
@@ -52,6 +53,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
     LobbyCount.start();
     IngameCount.start();
+    EndCount.start();
   }
 
   public static SpeedUhcPlugin getInstance() {
