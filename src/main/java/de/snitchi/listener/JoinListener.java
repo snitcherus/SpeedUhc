@@ -1,8 +1,6 @@
 package de.snitchi.listener;
 
 import de.snitchi.manager.GameState;
-import de.snitchi.manager.PlayerManager;
-import de.snitchi.manager.PlayerState;
 import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
@@ -16,8 +14,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
-
-import java.util.UUID;
 
 public class JoinListener implements Listener {
 
@@ -34,6 +30,8 @@ public class JoinListener implements Listener {
     player.getInventory().clear();
     player.getActivePotionEffects().clear();
 
+
+
     ItemBuilder builder = new ItemBuilder(Material.MAGMA_CREAM);
     builder.setAmount(1);
     Inventory inventory = player.getInventory();
@@ -41,13 +39,13 @@ public class JoinListener implements Listener {
     switch(gameState){
       case LOBBY:
 
+        PlayerStuffCheck(player, GameMode.ADVENTURE);
+
         builder.setDisplayName("§cLobby Verlassen");
         inventory.setItem(8, builder.build());
 
         Location location = (Location) config.get("Game.Lobby.pos");
-        player.setGameMode(GameMode.ADVENTURE);
         player.teleport(location);
-        Scoreboard.setScoreboard(player);
 
         event.setJoinMessage(Messages.getMsg("Lobby.join", player.getDisplayName()));
 
@@ -55,10 +53,11 @@ public class JoinListener implements Listener {
       case INGAME:
       case END:
 
+        PlayerStuffCheck(player, GameMode.SPECTATOR);
+
         builder.setDisplayName("§cSpiel Verlassen");
         inventory.setItem(8, builder.build());
 
-        player.setGameMode(GameMode.SPECTATOR);
         event.setJoinMessage(null);
         break;
     }
@@ -83,5 +82,19 @@ public class JoinListener implements Listener {
       Scoreboard.setScoreboard(player);
       return;
     }
+  }
+
+  public void PlayerStuffCheck(Player player, GameMode gameMode){
+
+    player.getInventory().clear();
+    player.getActivePotionEffects().clear();
+    player.setGameMode(gameMode);
+
+    player.setFoodLevel(20);
+    player.setHealth(20);
+    player.setExp(0.0F);
+    player.setLevel(0);
+
+    Scoreboard.setScoreboard(player);
   }
 }

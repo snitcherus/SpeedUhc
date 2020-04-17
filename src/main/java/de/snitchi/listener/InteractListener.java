@@ -18,6 +18,10 @@ public class InteractListener implements Listener {
       return;
     }
 
+    if(player.getInventory().getHeldItemSlot() != 8){
+      return;
+    }
+
     switch (event.getItem().getItemMeta().getDisplayName()) {
       case "§cLobby Verlassen":
       case "§cSpiel Verlassen":
