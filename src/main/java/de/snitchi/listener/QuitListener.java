@@ -34,7 +34,7 @@ public class QuitListener implements Listener {
         event.setQuitMessage(Messages.getMsg("Lobby.quit", player.getDisplayName()));
         break;
       case INGAME:
-        if(Bukkit.getOnlinePlayers().size() >= 1){
+        if(SpeedUhcPlugin.playermanager.size() >= 1){
           SpeedUhcPlugin.gameState = GameState.END;
           Bukkit.broadcastMessage("Test-Ende");
         }

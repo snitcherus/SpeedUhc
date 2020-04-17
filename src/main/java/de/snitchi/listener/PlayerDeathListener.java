@@ -12,6 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
+import java.util.UUID;
+
 public class PlayerDeathListener implements Listener {
 
   @EventHandler
@@ -22,12 +24,7 @@ public class PlayerDeathListener implements Listener {
     }
 
     Player player = (Player) event.getEntity();
-
-    if(Bukkit.getOnlinePlayers().size() >= 1){
-      SpeedUhcPlugin.gameState = GameState.END;
-      Bukkit.broadcastMessage("Test-Ende");
-      return;
-    }
+    UUID uuid = player.getUniqueId();
 
     Configuration userConfig = SpeedUhcPlugin.getInstance().getUserConfig();
 
@@ -39,6 +36,14 @@ public class PlayerDeathListener implements Listener {
       userConfig.set(player.getUniqueId() + ".Deaths", suicide);
       SpeedUhcPlugin.getInstance().saveUserConfig();
       Bukkit.broadcastMessage(Messages.getMsg("System.suicide", player.getDisplayName()));
+
+      SpeedUhcPlugin.playermanager.remove(uuid);
+
+      if(SpeedUhcPlugin.playermanager.size() >= 1){
+        SpeedUhcPlugin.gameState = GameState.END;
+        Bukkit.broadcastMessage("Test-Ende");
+        return;
+      }
 
       Scoreboard.setScoreboard(player);
       return;
@@ -54,6 +59,14 @@ public class PlayerDeathListener implements Listener {
     Scoreboard.setScoreboard(player);
 
     player.setGameMode(GameMode.SPECTATOR);
+
+    SpeedUhcPlugin.playermanager.remove(uuid);
+
+    if(SpeedUhcPlugin.playermanager.size() >= 1){
+      SpeedUhcPlugin.gameState = GameState.END;
+      Bukkit.broadcastMessage("Test-Ende");
+      return;
+    }
 
     Messages.send(player, ".System.death", target.getDisplayName());
     Messages.send(target, ".System.killer", player.getDisplayName());
