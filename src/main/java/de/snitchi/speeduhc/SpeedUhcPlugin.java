@@ -11,6 +11,7 @@ import de.snitchi.listener.PlayerDeathListener;
 import de.snitchi.listener.QuitListener;
 import de.snitchi.listener.RegenerationListener;
 import de.snitchi.manager.GameState;
+import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,12 +23,18 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class SpeedUhcPlugin extends JavaPlugin {
 
   public static GameState gameState = GameState.LOBBY;
-  public static PlayerState playerState = PlayerState.ALIVE;
+  public static PlayerState playerState;
+
+  public static HashMap<UUID, PlayerManager> playermanager = new HashMap<UUID, PlayerManager>();
+
   private static SpeedUhcPlugin instance;
   private Configuration msgConfig;
   private FileConfiguration userConfig;

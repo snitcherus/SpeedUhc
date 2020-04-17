@@ -1,6 +1,8 @@
 package de.snitchi.listener;
 
 import de.snitchi.manager.GameState;
+import de.snitchi.manager.PlayerManager;
+import de.snitchi.manager.PlayerState;
 import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
@@ -14,6 +16,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
+
+import java.util.UUID;
 
 public class JoinListener implements Listener {
 
@@ -35,6 +39,11 @@ public class JoinListener implements Listener {
 
     switch(gameState){
       case LOBBY:
+
+        UUID uuid = player.getUniqueId();
+
+        //SpeedUhcPlugin.playermanager.put(uuid, new PlayerManager(uuid, PlayerState.ALIVE));
+        //System.out.println("Add-Player " + uuid);
 
         builder.setDisplayName("§cLobby Verlassen");
         inventory.setItem(8, builder.build());

@@ -1,5 +1,7 @@
 package de.snitchi.listener;
 
+import de.snitchi.manager.GameState;
+import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,11 +10,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class InteractListener implements Listener {
 
   @EventHandler
-  public void onInteract(PlayerInteractEvent event){
+  public void onInteract(PlayerInteractEvent event) {
 
     Player player = event.getPlayer();
 
-    switch(event.getItem().getItemMeta().getDisplayName()){
+    if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
+      return;
+    }
+
+    switch (event.getItem().getItemMeta().getDisplayName()) {
       case "§cLobby Verlassen":
       case "§cSpiel Verlassen":
         player.kickPlayer("");

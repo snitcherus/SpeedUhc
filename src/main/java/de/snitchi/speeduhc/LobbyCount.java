@@ -1,12 +1,16 @@
 package de.snitchi.speeduhc;
 
 import de.snitchi.manager.GameState;
+import de.snitchi.manager.PlayerManager;
+import de.snitchi.manager.PlayerState;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class LobbyCount {
 
@@ -63,6 +67,11 @@ public class LobbyCount {
 
           player.setGameMode(GameMode.SURVIVAL);
 
+
+          UUID uuid = player.getUniqueId();
+          SpeedUhcPlugin.playermanager.put(uuid, new PlayerManager(uuid, PlayerState.ALIVE));
+          System.out.println("Add-Player " + uuid);
+
           player.getInventory().clear();
           player.setFoodLevel(20);
           player.setHealth(20);
@@ -76,4 +85,6 @@ public class LobbyCount {
       timeToCount--;
     }, 0L, 20L);
   }
+
 }
+
