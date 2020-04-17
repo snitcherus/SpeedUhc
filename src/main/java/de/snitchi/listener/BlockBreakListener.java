@@ -1,5 +1,7 @@
 package de.snitchi.listener;
 
+import de.snitchi.manager.GameState;
+import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -13,12 +15,16 @@ public class BlockBreakListener implements Listener {
   private ItemStack itemStack = new ItemStack(Material.AIR);
 
   @EventHandler
-  public void onBreak(BlockBreakEvent event){
+  public void onBreak(BlockBreakEvent event) {
 
     Block block = event.getBlock();
     Player player = event.getPlayer();
 
-    switch(block.getType()){
+    if (SpeedUhcPlugin.gameState != GameState.INGAME) {
+      return;
+    }
+
+    switch (block.getType()) {
       case IRON_ORE:
         instantOreSmelt(player, Material.IRON_INGOT, block);
         break;
@@ -58,17 +64,19 @@ public class BlockBreakListener implements Listener {
   }
 
   /**
-   * @param player the block breaker
+   * @param player   the block breaker
    * @param material the dropped item
-   * @param block the breaked block
+   * @param block    the breaked block
    */
 
-  public void instantOreSmelt(Player player, Material material, Block block){
+  public void instantOreSmelt(Player player, Material material, Block block) {
 
-    if (player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_PICKAXE))
+    if (player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_PICKAXE)) {
       return;
-    if (player.getInventory().getItemInMainHand().getType().equals(Material.GOLDEN_PICKAXE))
+    }
+    if (player.getInventory().getItemInMainHand().getType().equals(Material.GOLDEN_PICKAXE)) {
       return;
+    }
 
     block.setType(Material.AIR);
     player.giveExp(2);
@@ -78,9 +86,9 @@ public class BlockBreakListener implements Listener {
 
   /**
    * @param material the dropped item
-   * @param block the breaked block
+   * @param block    the breaked block
    */
-  public void instantLogSmelt(Material material, Block block){
+  public void instantLogSmelt(Material material, Block block) {
     block.setType(Material.AIR);
     itemStack = new ItemStack(material);
     itemStack.setAmount(4);
@@ -89,9 +97,9 @@ public class BlockBreakListener implements Listener {
 
   /**
    * @param material the dropped item
-   * @param block the breaked block
+   * @param block    the breaked block
    */
-  public void instantBlockSmelt(Material material, Block block){
+  public void instantBlockSmelt(Material material, Block block) {
     block.setType(Material.AIR);
     itemStack = new ItemStack(material);
     itemStack.setAmount(1);
