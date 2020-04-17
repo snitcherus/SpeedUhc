@@ -52,6 +52,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     registerCommands();
     registerListener();
 
+    CraftingRecipes.InitialRecipes();
     LobbyCount.start();
     IngameCount.start();
     EndCount.start();
@@ -68,8 +69,9 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
   private FileConfiguration loadYml(String name) {
     File file = new File(getDataFolder(), name);
-    if (!getDataFolder().exists())
+    if (!getDataFolder().exists()) {
       getDataFolder().mkdirs();
+    }
     if (!file.exists()) {
       try (InputStream in = getResource(name)) {
         Files.copy(in, file.toPath());
@@ -91,7 +93,6 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new ImportantListener(), this);
 
   }
-
 
 
   private void registerCommands() {
