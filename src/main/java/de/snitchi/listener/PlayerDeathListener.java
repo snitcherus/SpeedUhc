@@ -1,25 +1,34 @@
 package de.snitchi.listener;
 
 import de.snitchi.manager.GameState;
+import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
 
+  private ItemBuilder builder = new ItemBuilder(Material.GOLDEN_APPLE);
+
   @EventHandler
   public void onDeath(EntityDeathEvent event) {
 
     if (!(event.getEntity() instanceof Player)) {
+      return;
+    }
+
+    if (SpeedUhcPlugin.gameState != GameState.INGAME) {
       return;
     }
 
@@ -31,24 +40,29 @@ public class PlayerDeathListener implements Listener {
     //attacker
     Player target = player.getKiller();
 
-    if(target == null){
+    if (target == null) {
+
+      //Stats
+
       int suicide = userConfig.getInt(player.getUniqueId() + ".Deaths") + 1;
       userConfig.set(player.getUniqueId() + ".Deaths", suicide);
       SpeedUhcPlugin.getInstance().saveUserConfig();
+
+      BuildPlayerHead((PlayerDeathEvent) event);
+
       Bukkit.broadcastMessage(Messages.getMsg("System.suicide", player.getDisplayName()));
+      Scoreboard.setScoreboard(player);
 
       SpeedUhcPlugin.playermanager.remove(uuid);
 
-      if(SpeedUhcPlugin.playermanager.size() >= 1){
+      if (SpeedUhcPlugin.playermanager.size() >= 1) {
         SpeedUhcPlugin.gameState = GameState.END;
-        Bukkit.broadcastMessage("Test-Ende");
         return;
       }
-
-      Scoreboard.setScoreboard(player);
       return;
     }
 
+    //Stats
     int kill = userConfig.getInt(target.getUniqueId() + ".Kills") + 1;
     int death = userConfig.getInt(player.getUniqueId() + ".Deaths") + 1;
 
@@ -56,20 +70,31 @@ public class PlayerDeathListener implements Listener {
     userConfig.set(player.getUniqueId() + ".Deaths", death);
     SpeedUhcPlugin.getInstance().saveUserConfig();
 
+    //PlayerHead
+    BuildPlayerHead((PlayerDeathEvent) event);
+
+    //Scoreboard Update
     Scoreboard.setScoreboard(player);
 
     player.setGameMode(GameMode.SPECTATOR);
 
+    //PlayerManager stuff
     SpeedUhcPlugin.playermanager.remove(uuid);
 
-    if(SpeedUhcPlugin.playermanager.size() >= 1){
+    if (SpeedUhcPlugin.playermanager.size() >= 1) {
       SpeedUhcPlugin.gameState = GameState.END;
       Bukkit.broadcastMessage("Test-Ende");
       return;
     }
 
+    //Messages
     Messages.send(player, ".System.death", target.getDisplayName());
     Messages.send(target, ".System.killer", player.getDisplayName());
 
+  }
+
+  public void BuildPlayerHead(PlayerDeathEvent event) {
+    builder.setDisplayName("§3Player Head");
+    event.getDrops().add(builder.build());
   }
 }
