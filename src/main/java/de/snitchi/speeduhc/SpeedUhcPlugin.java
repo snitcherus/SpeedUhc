@@ -4,6 +4,7 @@ import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.HeadCmd;
 import de.snitchi.commands.SetLobbyCmd;
 import de.snitchi.commands.StatsCmd;
+import de.snitchi.countdown.DeathmatchCount;
 import de.snitchi.countdown.EndCount;
 import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.CraftListener;
@@ -56,6 +57,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     CraftingRecipes.InitialRecipes();
     LobbyCount.start();
     IngameCount.start();
+    DeathmatchCount.start();
     EndCount.start();
   }
 

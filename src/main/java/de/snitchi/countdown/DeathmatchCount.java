@@ -5,12 +5,11 @@ import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
-import org.bukkit.entity.Player;
 
-public class EndCount {
+public class DeathmatchCount {
 
   private static int startID;
-  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("endTimeToCount");
+  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("deathmatchTimeToCount");
 
   public static void start(){
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
@@ -19,27 +18,19 @@ public class EndCount {
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
 
-      if(!(SpeedUhcPlugin.playermanager.size() <= 1)){
+      if(SpeedUhcPlugin.gameState != GameState.DEATHMATCH){
         return;
       }
 
-      if(SpeedUhcPlugin.gameState != GameState.END){
-        return;
-      }
-
-      Bukkit.broadcastMessage(Messages.getMsg("End.count", timeToCount + ""));
+      Bukkit.broadcastMessage(Messages.getMsg("Deathmatch.count", timeToCount + ""));
 
       if(timeToCount == 0){
 
-        for(Player player : Bukkit.getOnlinePlayers()){
-          player.kickPlayer("");
-        }
-
-        Bukkit.shutdown();
+        SpeedUhcPlugin.gameState = GameState.END;
 
       }
       timeToCount--;
-    },0L,20L);
+    },0L,1200L);
 
   }
 
