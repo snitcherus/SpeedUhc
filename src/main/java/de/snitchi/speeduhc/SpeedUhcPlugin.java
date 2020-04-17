@@ -11,21 +11,20 @@ import de.snitchi.listener.PlayerDeathListener;
 import de.snitchi.listener.QuitListener;
 import de.snitchi.listener.RegenerationListener;
 import de.snitchi.manager.GameState;
+import de.snitchi.countdown.IngameCount;
+import de.snitchi.countdown.LobbyCount;
 import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 public class SpeedUhcPlugin extends JavaPlugin {

@@ -1,8 +1,10 @@
-package de.snitchi.speeduhc;
+package de.snitchi.countdown;
 
 import de.snitchi.manager.GameState;
 import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
+import de.snitchi.speeduhc.Messages;
+import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;

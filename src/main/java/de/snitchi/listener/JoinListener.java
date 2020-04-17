@@ -23,9 +23,10 @@ public class JoinListener implements Listener {
 
   @EventHandler
   public void onFirstJoin(PlayerJoinEvent event){
-    Player player = event.getPlayer();
 
-    Configuration userConfig = SpeedUhcPlugin.getInstance().getUserConfig();
+    Player player = event.getPlayer();
+    ConfigCheck(player);
+
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
 
     GameState gameState = SpeedUhcPlugin.gameState;
@@ -39,11 +40,6 @@ public class JoinListener implements Listener {
 
     switch(gameState){
       case LOBBY:
-
-        UUID uuid = player.getUniqueId();
-
-        //SpeedUhcPlugin.playermanager.put(uuid, new PlayerManager(uuid, PlayerState.ALIVE));
-        //System.out.println("Add-Player " + uuid);
 
         builder.setDisplayName("§cLobby Verlassen");
         inventory.setItem(8, builder.build());
@@ -66,17 +62,22 @@ public class JoinListener implements Listener {
         event.setJoinMessage(null);
         break;
     }
+  }
 
-    if(!(userConfig.isSet(player.getUniqueId() + ""))){
+  public void ConfigCheck(Player player){
 
-      userConfig.set(player.getUniqueId() + ".Name", player.getDisplayName());
-      userConfig.set(player.getUniqueId() + ".Coins", 0);
-      userConfig.set(player.getUniqueId() + ".Kills", 0);
-      userConfig.set(player.getUniqueId() + ".Deaths", 0);
-      userConfig.set(player.getUniqueId() + ".KD", 0);
-      userConfig.set(player.getUniqueId() + ".Played_Games", 0);
-      userConfig.set(player.getUniqueId() + ".Wins", 0);
-      userConfig.set(player.getUniqueId() + ".Loses", 0);
+    Configuration config = SpeedUhcPlugin.getInstance().getUserConfig();
+
+    if(!(config.isSet(player.getUniqueId() + ""))){
+
+      config.set(player.getUniqueId() + ".Name", player.getDisplayName());
+      config.set(player.getUniqueId() + ".Coins", 0);
+      config.set(player.getUniqueId() + ".Kills", 0);
+      config.set(player.getUniqueId() + ".Deaths", 0);
+      config.set(player.getUniqueId() + ".KD", 0);
+      config.set(player.getUniqueId() + ".Played_Games", 0);
+      config.set(player.getUniqueId() + ".Wins", 0);
+      config.set(player.getUniqueId() + ".Loses", 0);
       SpeedUhcPlugin.getInstance().saveUserConfig();
 
       Scoreboard.setScoreboard(player);
