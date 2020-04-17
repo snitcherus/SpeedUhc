@@ -6,6 +6,7 @@ import de.snitchi.commands.SetLobbyCmd;
 import de.snitchi.commands.StatsCmd;
 import de.snitchi.countdown.EndCount;
 import de.snitchi.listener.BlockBreakListener;
+import de.snitchi.listener.CraftListener;
 import de.snitchi.listener.ImportantListener;
 import de.snitchi.listener.InteractListener;
 import de.snitchi.listener.JoinListener;
@@ -91,6 +92,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
     getServer().getPluginManager().registerEvents(new InteractListener(), this);
     getServer().getPluginManager().registerEvents(new ImportantListener(), this);
+    getServer().getPluginManager().registerEvents(new CraftListener(), this);
 
   }
 

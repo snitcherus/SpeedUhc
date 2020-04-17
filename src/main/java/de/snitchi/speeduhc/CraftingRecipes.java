@@ -19,14 +19,22 @@ public class CraftingRecipes {
 
   }
 
+  /**
+   * @param material needed Material
+   * @param enchantment enchantment result
+   * @param enchantmentLevel enchantment level
+   * @param recipeName recipe name
+   */
   public static void createRecipe(Material material, Enchantment enchantment, int enchantmentLevel, String recipeName){
     ItemBuilder builder = new ItemBuilder(material);
     builder.addEnchant(enchantment, enchantmentLevel);
 
+    //Recipe Name
     NamespacedKey key = new NamespacedKey(SpeedUhcPlugin.getInstance(), recipeName);
 
     ShapedRecipe recipe = new ShapedRecipe(key, builder.build());
 
+    //Line 1 - 3 in the Workbench
     recipe.shape("   ", " E ", "   ");
 
     recipe.setIngredient('E', material);
