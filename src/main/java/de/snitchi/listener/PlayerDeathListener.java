@@ -1,5 +1,6 @@
 package de.snitchi.listener;
 
+import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
@@ -21,6 +22,12 @@ public class PlayerDeathListener implements Listener {
     }
 
     Player player = (Player) event.getEntity();
+
+    if(Bukkit.getOnlinePlayers().size() >= 1){
+      SpeedUhcPlugin.gameState = GameState.END;
+      Bukkit.broadcastMessage("Test-Ende");
+      return;
+    }
 
     Configuration userConfig = SpeedUhcPlugin.getInstance().getUserConfig();
 

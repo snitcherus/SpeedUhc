@@ -3,6 +3,7 @@ package de.snitchi.speeduhc;
 import de.snitchi.manager.GameState;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.entity.Player;
 
 public class IngameCount {
 
@@ -40,5 +41,4 @@ public class IngameCount {
       timeToCount--;
     },0,1200); //1200 Ticks = One Minute
   }
-
 }

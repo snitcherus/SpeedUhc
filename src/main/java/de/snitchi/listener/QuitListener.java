@@ -5,6 +5,7 @@ import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +34,12 @@ public class QuitListener implements Listener {
         event.setQuitMessage(Messages.getMsg("Lobby.quit", player.getDisplayName()));
         break;
       case INGAME:
+        if(Bukkit.getOnlinePlayers().size() >= 1){
+          SpeedUhcPlugin.gameState = GameState.END;
+          Bukkit.broadcastMessage("Test-Ende");
+        }
+        event.setQuitMessage(null);
+        break;
       case END:
         event.setQuitMessage(null);
         break;
