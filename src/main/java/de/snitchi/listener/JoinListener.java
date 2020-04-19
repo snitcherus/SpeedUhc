@@ -5,6 +5,7 @@ import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -30,8 +31,6 @@ public class JoinListener implements Listener {
     player.getInventory().clear();
     player.getActivePotionEffects().clear();
 
-
-
     ItemBuilder builder = new ItemBuilder(Material.MAGMA_CREAM);
     builder.setAmount(1);
     Inventory inventory = player.getInventory();
@@ -45,6 +44,11 @@ public class JoinListener implements Listener {
         inventory.setItem(8, builder.build());
 
         Location location = (Location) config.get("Game.Lobby.pos");
+
+        if(location == null){
+         location = Bukkit.getServer().getWorld("world").getSpawnLocation();
+        }
+
         player.teleport(location);
 
         event.setJoinMessage(Messages.getMsg("Lobby.join", player.getDisplayName()));

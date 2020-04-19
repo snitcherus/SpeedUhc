@@ -10,3 +10,4 @@ commands:
   head:
   setlobby:
   stats:
+  setspawn:

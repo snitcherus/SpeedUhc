@@ -4,7 +4,6 @@ import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.Configuration;
 
 public class DeathmatchCount {
 
@@ -12,7 +11,6 @@ public class DeathmatchCount {
   public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("deathmatchTimeToCount");
 
   public static void start(){
-    Configuration config = SpeedUhcPlugin.getInstance().getConfig();
 
     //runnable
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
