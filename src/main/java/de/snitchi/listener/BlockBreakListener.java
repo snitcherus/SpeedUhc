@@ -56,9 +56,6 @@ public class BlockBreakListener implements Listener {
         instantBlockSmelt(Material.DIRT, block);
         break;
       default:
-        Material material = block.getType();
-        itemStack = new ItemStack(material);
-        block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
         break;
     }
   }

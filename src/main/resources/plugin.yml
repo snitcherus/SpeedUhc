@@ -10,5 +10,4 @@ commands:
   head:
   setlobby:
   stats:
-  setspawn:
   gamestate:

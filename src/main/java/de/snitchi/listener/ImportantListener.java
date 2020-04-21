@@ -34,7 +34,7 @@ public class ImportantListener implements Listener {
       return;
     }
 
-    event.setCancelled(true);
+    event.setCancelled(false);
   }
 
   @EventHandler

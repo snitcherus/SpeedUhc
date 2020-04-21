@@ -81,9 +81,8 @@ public class PlayerDeathListener implements Listener {
     //PlayerManager stuff
     SpeedUhcPlugin.playermanager.remove(uuid);
 
-    if (SpeedUhcPlugin.playermanager.size() >= 1) {
+    if (SpeedUhcPlugin.playermanager.size() <= 1) {
       SpeedUhcPlugin.gameState = GameState.END;
-      Bukkit.broadcastMessage("Test-Ende");
       return;
     }
 

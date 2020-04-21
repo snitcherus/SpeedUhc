@@ -4,7 +4,6 @@ import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.GameStateCmd;
 import de.snitchi.commands.HeadCmd;
 import de.snitchi.commands.SetLobbyCmd;
-import de.snitchi.commands.SetSpawnCmd;
 import de.snitchi.commands.StatsCmd;
 import de.snitchi.countdown.DeathmatchCount;
 import de.snitchi.countdown.EndCount;
@@ -107,7 +106,6 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getCommand("head").setExecutor(new HeadCmd());
     getCommand("setlobby").setExecutor(new SetLobbyCmd());
     getCommand("stats").setExecutor(new StatsCmd());
-    getCommand("setspawn").setExecutor(new SetSpawnCmd());
     getCommand("gamestate").setExecutor(new GameStateCmd());
 
   }
