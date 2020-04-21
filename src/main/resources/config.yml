@@ -3,4 +3,6 @@ timeToCount: 65
 ingameTimeToCount: 1
 deathmatchTimeToCount: 5
 endTimeToCount: 5
+spawnRadius: 20
+spawnY: 70
 

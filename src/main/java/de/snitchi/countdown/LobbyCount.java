@@ -12,81 +12,91 @@ import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class LobbyCount {
 
-  private static int startID;
-  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("timeToCount");
+    private static int startID;
+    public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("timeToCount");
 
-  public static void start() {
+    public static void start() {
 
-    Configuration config = SpeedUhcPlugin.getInstance().getConfig();
-    int playersToStart = config.getInt("playersToStart");
+        Configuration config = SpeedUhcPlugin.getInstance().getConfig();
+        int playersToStart = config.getInt("playersToStart");
 
-    //runnable
-    startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
+        int spawnRadius = config.getInt("spawnRadius");
+        int spawnY = config.getInt("spawnY");
 
-      if (Bukkit.getOnlinePlayers().size() < playersToStart) {
+        //runnable
+        startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
-          if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
-            return;
-          }
+            if (Bukkit.getOnlinePlayers().size() < playersToStart) {
 
-          for(Player player : Bukkit.getOnlinePlayers()){
-            player.setLevel(0);
-            player.setExp(0);
-          }
-        return;
-      }
+                if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
+                    return;
+                }
 
-      if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
-        Bukkit.getScheduler().cancelTask(startID);
-        return;
-      }
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.setLevel(0);
+                    player.setExp(0);
+                }
+                return;
+            }
 
-      for (Player player : Bukkit.getOnlinePlayers()) {
-        player.setLevel(timeToCount);
-        player.setExp(timeToCount / 180F);
-      }
+            if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
+                Bukkit.getScheduler().cancelTask(startID);
+                return;
+            }
 
-      if (timeToCount == 60 || timeToCount == 30 || timeToCount < 11 && timeToCount > 0) {
-        Bukkit.broadcastMessage(Messages.getMsg("Lobby.count", timeToCount + ""));
-        for (Player player : Bukkit.getOnlinePlayers()) {
-          player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0F, 1.0F);
-        }
-      }
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.setLevel(timeToCount);
+                player.setExp(timeToCount / 180F);
+            }
 
-      if (timeToCount == 0) {
-        Bukkit.broadcastMessage(Messages.getMsg("Game.begin"));
+            if (timeToCount == 60 || timeToCount == 30 || timeToCount < 11 && timeToCount > 0) {
+                Bukkit.broadcastMessage(Messages.getMsg("Lobby.count", timeToCount + ""));
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1.0F, 1.0F);
+                }
+            }
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-          player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 7.0F, 7.0F);
+            if (timeToCount == 0) {
+                Bukkit.broadcastMessage(Messages.getMsg("Game.begin"));
 
-          //teleport einfügen
-          Location location = (Location) config.get("Game.Lobby.pos");
-          player.teleport(location);
+                for (Player player : Bukkit.getOnlinePlayers()) {
 
-          player.setGameMode(GameMode.SURVIVAL);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 7.0F, 7.0F);
+
+                    player.setGameMode(GameMode.SURVIVAL);
+
+                    UUID uuid = player.getUniqueId();
+                    SpeedUhcPlugin.playermanager.put(uuid, new PlayerManager(uuid, PlayerState.ALIVE));
+                    System.out.println("Add-Player " + uuid);
+
+                    player.getInventory().clear();
+                    player.setFoodLevel(20);
+                    player.setHealth(20);
+                    player.setExp(0.0F);
+                    player.setLevel(0);
+
+                    Random random = new Random();
+                    int randomX = random.nextInt(spawnRadius);
+                    int randomZ = random.nextInt(spawnRadius);
 
 
-          UUID uuid = player.getUniqueId();
-          SpeedUhcPlugin.playermanager.put(uuid, new PlayerManager(uuid, PlayerState.ALIVE));
-          System.out.println("Add-Player " + uuid);
+                    Location location = new Location(Bukkit.getServer().getWorld("world"), randomX, spawnY, randomZ);
+                    player.teleport(location);
 
-          player.getInventory().clear();
-          player.setFoodLevel(20);
-          player.setHealth(20);
-          player.setExp(0.0F);
-          player.setLevel(0);
-        }
+                }
 
-        SpeedUhcPlugin.gameState = GameState.INGAME;
-        Bukkit.getScheduler().cancelTask(startID);
-      }
-      timeToCount--;
-    }, 0L, 20L);
-  }
+                SpeedUhcPlugin.gameState = GameState.INGAME;
+                Bukkit.getScheduler().cancelTask(startID);
+            }
+
+            timeToCount--;
+        }, 0L, 20L);
+    }
 
 }
 
