@@ -1,6 +1,6 @@
 playersToStart: 2
-timeToCount: 65
-ingameTimeToCount: 1
+timeToCount: 30
+ingameTimeToCount: 30
 deathmatchTimeToCount: 5
 endTimeToCount: 5
 spawnRadius: 20

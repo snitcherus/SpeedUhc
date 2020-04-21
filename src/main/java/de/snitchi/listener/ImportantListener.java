@@ -18,21 +18,46 @@ public class ImportantListener implements Listener {
 
     Player player = (Player) event.getWhoClicked();
 
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() != GameMode.SPECTATOR) {
+    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+      System.out.println("EntityDamage");
+      event.setCancelled(true);
       return;
     }
+
+    if(SpeedUhcPlugin.gameState == GameState.END){
+      event.setCancelled(true);
+      return;
+    }
+
+    if(player.getGameMode() == GameMode.SPECTATOR){
+      event.setCancelled(true);
+      return;
+    }
+
     event.setCancelled(true);
   }
 
   @EventHandler
   public void onDrop(PlayerDropItemEvent event) {
+
     Player player = event.getPlayer();
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() != GameMode.SPECTATOR) {
+    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+      System.out.println("EntityDamage");
+      event.setCancelled(true);
       return;
     }
-    event.setCancelled(true);
+
+    if(SpeedUhcPlugin.gameState == GameState.END){
+      event.setCancelled(true);
+      return;
+    }
+
+    if(player.getGameMode() == GameMode.SPECTATOR){
+      event.setCancelled(true);
+      return;
+    }
+
+    event.setCancelled(false);
   }
 
   @EventHandler
