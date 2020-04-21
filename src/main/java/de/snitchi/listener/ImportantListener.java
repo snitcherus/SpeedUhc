@@ -6,8 +6,6 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,7 +19,7 @@ public class ImportantListener implements Listener {
     Player player = (Player) event.getWhoClicked();
 
     if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
+        player.getGameMode() != GameMode.SPECTATOR) {
       return;
     }
     event.setCancelled(true);
@@ -31,33 +29,7 @@ public class ImportantListener implements Listener {
   public void onDrop(PlayerDropItemEvent event) {
     Player player = event.getPlayer();
     if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
-      return;
-    }
-    event.setCancelled(true);
-  }
-
-  @EventHandler
-  public void onEntityDamage(EntityDamageByEntityEvent event) {
-    if (!(event.getEntity() instanceof Player)) {
-      return;
-    }
-    Player player = (Player) event.getEntity();
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
-      return;
-    }
-    event.setCancelled(true);
-  }
-
-  @EventHandler
-  public void onBlockDamage(EntityDamageByBlockEvent event) {
-    if (!(event.getEntity() instanceof Player)) {
-      return;
-    }
-    Player player = (Player) event.getEntity();
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
+        player.getGameMode() != GameMode.SPECTATOR) {
       return;
     }
     event.setCancelled(true);
@@ -69,11 +41,26 @@ public class ImportantListener implements Listener {
       return;
     }
     Player player = (Player) event.getEntity();
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
+
+    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+      System.out.println("EntityDamage");
+      event.setCancelled(true);
       return;
     }
-    event.setCancelled(true);
+
+    if(SpeedUhcPlugin.gameState == GameState.END){
+      event.setCancelled(true);
+      return;
+    }
+
+    if(player.getGameMode() == GameMode.SPECTATOR){
+      event.setCancelled(true);
+      return;
+    }
+
+    System.out.println("EntityDamage");
+
+    event.setCancelled(false);
   }
 
   @EventHandler
@@ -83,9 +70,11 @@ public class ImportantListener implements Listener {
     }
     Player player = (Player) event.getEntity();
     if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() == GameMode.SPECTATOR) {
+        player.getGameMode() != GameMode.SPECTATOR) {
       return;
     }
+
+    System.out.println("FoodChange");
     event.setCancelled(true);
   }
 }
