@@ -24,8 +24,6 @@ public class Scoreboard {
 
     String title = Messages.getMsg("Scoreboard.title");
     String line1 = Messages.getMsg("Scoreboard.empty");
-    String scoreboardCoins = Messages.getMsg("Scoreboard.coins", coins + "");
-    String line3 = Messages.getMsg("Scoreboard.empty");
     String scoreboardKills = Messages.getMsg("Scoreboard.kills", kills + "");
     String scoreboardDeaths = Messages.getMsg("Scoreboard.deaths", deaths + "");
     String line6 = Messages.getMsg("Scoreboard.empty");
@@ -33,7 +31,7 @@ public class Scoreboard {
     String line8 = Messages.getMsg("Scoreboard.empty");
 
     ScoreboardSet setBoard = new ScoreboardSet();
-    setBoard.set(player, title, line1, scoreboardCoins, line3, scoreboardKills, scoreboardDeaths,line6, scoreboardKD,
+    setBoard.set(player, title, line1, scoreboardKills, scoreboardDeaths,line6, scoreboardKD,
         line8);
 
   }

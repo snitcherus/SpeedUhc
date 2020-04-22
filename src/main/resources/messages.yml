@@ -20,12 +20,14 @@ Lobby:
 Ingame:
   count: "{prefix}&7Das Deathmatch beginnt in &a{0} &7Minuten!"
   deathmatch: "{prefix}&7Das Deathmatch beginnt nun!"
+  border: "{prefix}&7Die Border verkleinert sich!"
 
 End:
   count: "{prefix}&7Das Spiel endet in &a{0} &7Sekunden!"
 
 Deathmatch:
   count: "{prefix}&7Das Deathmatch endet in &a{0} &7Minuten!"
+  end: "{prefix}&7Das Deathmatch ist beendet."
 
 Spawn:
   set: "{prefix}&7Der Spawn &e{0} &7wurde gesetzt!"
@@ -54,7 +56,6 @@ Head:
 Scoreboard:
   title: "&cSpeed-UHC"
   empty: "&r"
-  coins: "&eCoins &8: &e{0}"
   kills: "&eKills &8: &e{0}"
   deaths: "&eDeaths &8: &e{0}"
   kd: "&eK/D &8: &e{0}"

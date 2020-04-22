@@ -68,7 +68,6 @@ public class ImportantListener implements Listener {
     Player player = (Player) event.getEntity();
 
     if(SpeedUhcPlugin.gameState == GameState.LOBBY){
-      System.out.println("EntityDamage");
       event.setCancelled(true);
       return;
     }
@@ -83,8 +82,6 @@ public class ImportantListener implements Listener {
       return;
     }
 
-    System.out.println("EntityDamage");
-
     event.setCancelled(false);
   }
 
@@ -94,12 +91,21 @@ public class ImportantListener implements Listener {
       return;
     }
     Player player = (Player) event.getEntity();
-    if (SpeedUhcPlugin.gameState != GameState.LOBBY || SpeedUhcPlugin.gameState != GameState.END ||
-        player.getGameMode() != GameMode.SPECTATOR) {
+    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+      event.setCancelled(true);
       return;
     }
 
-    System.out.println("FoodChange");
-    event.setCancelled(true);
+    if(SpeedUhcPlugin.gameState == GameState.END){
+      event.setCancelled(true);
+      return;
+    }
+
+    if(player.getGameMode() == GameMode.SPECTATOR){
+      event.setCancelled(true);
+      return;
+    }
+
+    event.setCancelled(false);
   }
 }

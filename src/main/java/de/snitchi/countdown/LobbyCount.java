@@ -28,6 +28,8 @@ public class LobbyCount {
         int spawnRadius = config.getInt("spawnRadius");
         int spawnY = config.getInt("spawnY");
 
+        Bukkit.getWorld("world").getWorldBorder().setSize(1000);
+
         //runnable
         startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 

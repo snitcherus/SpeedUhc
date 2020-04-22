@@ -18,11 +18,6 @@ public class EndCount {
     //runnable
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
-
-      if(!(SpeedUhcPlugin.playermanager.size() <= 1)){
-        return;
-      }
-
       if(SpeedUhcPlugin.gameState != GameState.END){
         return;
       }
