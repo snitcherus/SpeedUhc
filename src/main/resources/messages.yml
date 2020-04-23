@@ -61,3 +61,5 @@ Scoreboard:
   kills: "&eKills &8: &e{0}"
   deaths: "&eDeaths &8: &e{0}"
   kd: "&eK/D &8: &e{0}"
+  border: "&7Border Size || &e{0}"
+  time: "&7Time to play || &e{0}"

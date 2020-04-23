@@ -73,9 +73,6 @@ public class PlayerDeathListener implements Listener {
     //PlayerHead
     BuildPlayerHead((PlayerDeathEvent) event);
 
-    //Scoreboard Update
-    Scoreboard.setScoreboard(player);
-
     player.setGameMode(GameMode.SPECTATOR);
 
     //PlayerManager stuff

@@ -2,13 +2,15 @@ package de.snitchi.countdown;
 
 import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.Messages;
+import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class IngameCount {
 
   private static int startID;
-  private static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("ingameTimeToCount");
+  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("ingameTimeToCount");
 
   public static void start() {
 
@@ -18,6 +20,10 @@ public class IngameCount {
 
       if (SpeedUhcPlugin.gameState != GameState.INGAME) {
         return;
+      }
+
+      for(Player player : Bukkit.getOnlinePlayers()){
+        Scoreboard.setIngameBoard(player);
       }
 
       switch (timeToCount) {
