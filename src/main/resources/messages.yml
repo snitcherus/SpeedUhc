@@ -23,6 +23,8 @@ Ingame:
   count: "{prefix}&7Das Deathmatch beginnt in &a{0} &7Minuten!"
   deathmatch: "{prefix}&7Das Deathmatch beginnt nun!"
   border: "&7Die Border verkleinert sich!"
+  protectionTime: "{prefix}&7Die Schutzzeit endet in &e{0} &7Minuten!"
+  protectionTimeEnd: "{prefix}&7Die Schutzzeit ist vorbei!"
 
 End:
   count: "{prefix}&7Das Spiel endet in &a{0} &7Sekunden!"
@@ -63,3 +65,4 @@ Scoreboard:
   kd: "&eK/D &8: &e{0}"
   border: "&7Border Size || &e{0}"
   time: "&7Time to play || &e{0}"
+  protectionTime: "&7Protection Time || &e{0}"

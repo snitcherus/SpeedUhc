@@ -1,5 +1,6 @@
 package de.snitchi.listener;
 
+import de.snitchi.countdown.ProtectionCount;
 import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.GameMode;
@@ -18,18 +19,18 @@ public class ImportantListener implements Listener {
 
     Player player = (Player) event.getWhoClicked();
 
-    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+    if (SpeedUhcPlugin.gameState == GameState.LOBBY) {
       System.out.println("EntityDamage");
       event.setCancelled(true);
       return;
     }
 
-    if(SpeedUhcPlugin.gameState == GameState.END){
+    if (SpeedUhcPlugin.gameState == GameState.END) {
       event.setCancelled(true);
       return;
     }
 
-    if(player.getGameMode() == GameMode.SPECTATOR){
+    if (player.getGameMode() == GameMode.SPECTATOR) {
       event.setCancelled(true);
       return;
     }
@@ -41,18 +42,18 @@ public class ImportantListener implements Listener {
   public void onDrop(PlayerDropItemEvent event) {
 
     Player player = event.getPlayer();
-    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+    if (SpeedUhcPlugin.gameState == GameState.LOBBY) {
       System.out.println("EntityDamage");
       event.setCancelled(true);
       return;
     }
 
-    if(SpeedUhcPlugin.gameState == GameState.END){
+    if (SpeedUhcPlugin.gameState == GameState.END) {
       event.setCancelled(true);
       return;
     }
 
-    if(player.getGameMode() == GameMode.SPECTATOR){
+    if (player.getGameMode() == GameMode.SPECTATOR) {
       event.setCancelled(true);
       return;
     }
@@ -67,17 +68,22 @@ public class ImportantListener implements Listener {
     }
     Player player = (Player) event.getEntity();
 
-    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+    if (ProtectionCount.timeToCount > 0) {
       event.setCancelled(true);
       return;
     }
 
-    if(SpeedUhcPlugin.gameState == GameState.END){
+    if (SpeedUhcPlugin.gameState == GameState.LOBBY) {
       event.setCancelled(true);
       return;
     }
 
-    if(player.getGameMode() == GameMode.SPECTATOR){
+    if (SpeedUhcPlugin.gameState == GameState.END) {
+      event.setCancelled(true);
+      return;
+    }
+
+    if (player.getGameMode() == GameMode.SPECTATOR) {
       event.setCancelled(true);
       return;
     }
@@ -91,17 +97,17 @@ public class ImportantListener implements Listener {
       return;
     }
     Player player = (Player) event.getEntity();
-    if(SpeedUhcPlugin.gameState == GameState.LOBBY){
+    if (SpeedUhcPlugin.gameState == GameState.LOBBY) {
       event.setCancelled(true);
       return;
     }
 
-    if(SpeedUhcPlugin.gameState == GameState.END){
+    if (SpeedUhcPlugin.gameState == GameState.END) {
       event.setCancelled(true);
       return;
     }
 
-    if(player.getGameMode() == GameMode.SPECTATOR){
+    if (player.getGameMode() == GameMode.SPECTATOR) {
       event.setCancelled(true);
       return;
     }

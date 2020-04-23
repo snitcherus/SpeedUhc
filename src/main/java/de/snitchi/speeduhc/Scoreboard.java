@@ -1,6 +1,7 @@
 package de.snitchi.speeduhc;
 
 import de.snitchi.countdown.IngameCount;
+import de.snitchi.countdown.ProtectionCount;
 import de.snitchi.someapi.ScoreboardSet;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
@@ -41,10 +42,11 @@ public class Scoreboard {
     String title = Messages.getMsg("Scoreboard.title");
     String empty = Messages.getMsg("Scoreboard.empty");
     String border = Messages.getMsg("Scoreboard.border", borderSize + "");
-    String timeToCount = Messages.getMsg("Scoreboard.time", IngameCount.timeToCount / 60  + 1 + "");
+    String timeToCount = Messages.getMsg("Scoreboard.time", IngameCount.timeToCount / 60 + 1 + "");
+    String protectionTimeToCount = Messages.getMsg("Scoreboard.protectionTime", ProtectionCount.timeToCount + 1 + "");
 
     ScoreboardSet setIngameBoard = new ScoreboardSet();
-    setIngameBoard.set(player, title, empty, border, timeToCount);
+    setIngameBoard.set(player, title, empty, border, timeToCount, protectionTimeToCount, empty);
 
   }
 }

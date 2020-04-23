@@ -8,6 +8,7 @@ import de.snitchi.commands.StartCmd;
 import de.snitchi.commands.StatsCmd;
 import de.snitchi.countdown.DeathmatchCount;
 import de.snitchi.countdown.EndCount;
+import de.snitchi.countdown.ProtectionCount;
 import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.CraftListener;
 import de.snitchi.listener.ImportantListener;
@@ -64,6 +65,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     IngameCount.start();
     DeathmatchCount.start();
     EndCount.start();
+    ProtectionCount.start();
   }
 
   public static void worldSettings(){
