@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.potion.PotionEffect;
 
 public class JoinListener implements Listener {
 
@@ -27,9 +28,6 @@ public class JoinListener implements Listener {
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
 
     GameState gameState = SpeedUhcPlugin.gameState;
-
-    player.getInventory().clear();
-    player.getActivePotionEffects().clear();
 
     ItemBuilder builder = new ItemBuilder(Material.MAGMA_CREAM);
     builder.setAmount(1);
@@ -92,6 +90,11 @@ public class JoinListener implements Listener {
 
     player.getInventory().clear();
     player.getActivePotionEffects().clear();
+
+    for(PotionEffect effect : player.getActivePotionEffects()){
+      player.removePotionEffect(effect.getType());
+    }
+
     player.setGameMode(gameMode);
 
     player.setFoodLevel(20);

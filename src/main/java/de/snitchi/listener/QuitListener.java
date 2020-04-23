@@ -31,6 +31,7 @@ public class QuitListener implements Listener {
 
     switch(gameState){
       case LOBBY:
+      case END:
         event.setQuitMessage(Messages.getMsg("Lobby.quit", player.getDisplayName()));
         break;
       case INGAME:
@@ -38,10 +39,7 @@ public class QuitListener implements Listener {
           SpeedUhcPlugin.gameState = GameState.END;
           Bukkit.broadcastMessage("Test-Ende");
         }
-        event.setQuitMessage(null);
-        break;
-      case END:
-        event.setQuitMessage(null);
+        event.setQuitMessage(Messages.getMsg("Lobby.quit", player.getDisplayName()));
         break;
     }
   }

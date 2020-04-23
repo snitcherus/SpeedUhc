@@ -4,6 +4,7 @@ import de.snitchi.commands.DamageCmd;
 import de.snitchi.commands.GameStateCmd;
 import de.snitchi.commands.HeadCmd;
 import de.snitchi.commands.SetLobbyCmd;
+import de.snitchi.commands.StartCmd;
 import de.snitchi.commands.StatsCmd;
 import de.snitchi.countdown.DeathmatchCount;
 import de.snitchi.countdown.EndCount;
@@ -20,6 +21,8 @@ import de.snitchi.countdown.IngameCount;
 import de.snitchi.countdown.LobbyCount;
 import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
+import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -54,12 +57,23 @@ public class SpeedUhcPlugin extends JavaPlugin {
 
     registerCommands();
     registerListener();
+    worldSettings();
 
     CraftingRecipes.InitialRecipes();
     LobbyCount.start();
     IngameCount.start();
     DeathmatchCount.start();
     EndCount.start();
+  }
+
+  public static void worldSettings(){
+    Bukkit.getWorld("world").setAutoSave(false);
+    Bukkit.getWorld("world").setStorm(false);
+    Bukkit.getWorld("world").setTime(800);
+    Bukkit.getWorld("world").setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+    Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+
+    Bukkit.getWorld("world").getWorldBorder().setSize(1000);
   }
 
   public static SpeedUhcPlugin getInstance() {
@@ -107,6 +121,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getCommand("setlobby").setExecutor(new SetLobbyCmd());
     getCommand("stats").setExecutor(new StatsCmd());
     getCommand("gamestate").setExecutor(new GameStateCmd());
+    getCommand("start").setExecutor(new StartCmd());
 
   }
 

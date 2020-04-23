@@ -7,6 +7,7 @@ import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.Configuration;
@@ -27,8 +28,6 @@ public class LobbyCount {
 
         int spawnRadius = config.getInt("spawnRadius");
         int spawnY = config.getInt("spawnY");
-
-        Bukkit.getWorld("world").getWorldBorder().setSize(1000);
 
         //runnable
         startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
