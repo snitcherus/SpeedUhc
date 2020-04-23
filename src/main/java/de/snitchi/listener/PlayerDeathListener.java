@@ -50,8 +50,8 @@ public class PlayerDeathListener implements Listener {
 
       BuildPlayerHead((PlayerDeathEvent) event);
 
-      Bukkit.broadcastMessage(Messages.getMsg("System.suicide", player.getDisplayName()));
-      Scoreboard.setScoreboard(player);
+      String suicideMessage = Messages.getMsg("System.suicide", player.getDisplayName());
+      ((PlayerDeathEvent) event).setDeathMessage(suicideMessage);
 
       SpeedUhcPlugin.playermanager.remove(uuid);
 
@@ -82,6 +82,9 @@ public class PlayerDeathListener implements Listener {
       SpeedUhcPlugin.gameState = GameState.END;
       return;
     }
+
+    String killMessage = Messages.getMsg("System.kill", player.getDisplayName(), target.getDisplayName());
+    ((PlayerDeathEvent) event).setDeathMessage(killMessage);
 
     //Messages
     Messages.send(player, ".System.death", target.getDisplayName());

@@ -1,12 +1,9 @@
 package de.snitchi.listener;
 
 import de.snitchi.manager.GameState;
-import de.snitchi.manager.PlayerManager;
-import de.snitchi.manager.PlayerState;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,6 +29,7 @@ public class QuitListener implements Listener {
     switch(gameState){
       case LOBBY:
       case END:
+      case DEATHMATCH:
         event.setQuitMessage(Messages.getMsg("Lobby.quit", player.getDisplayName()));
         break;
       case INGAME:

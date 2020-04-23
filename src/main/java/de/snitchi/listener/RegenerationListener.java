@@ -15,10 +15,11 @@ public class RegenerationListener implements Listener {
 
   @EventHandler
   public void onRegeneration(EntityRegainHealthEvent event){
-    if(event.getRegainReason() != EntityRegainHealthEvent.RegainReason.EATING){
+    if(event.getRegainReason() != EntityRegainHealthEvent.RegainReason.MAGIC_REGEN){
+      event.setCancelled(true);
       return;
     }
-    event.setCancelled(true);
+    event.setCancelled(false);
   }
 
   @EventHandler

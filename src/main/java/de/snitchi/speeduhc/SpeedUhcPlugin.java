@@ -70,6 +70,7 @@ public class SpeedUhcPlugin extends JavaPlugin {
     Bukkit.getWorld("world").setAutoSave(false);
     Bukkit.getWorld("world").setStorm(false);
     Bukkit.getWorld("world").setTime(800);
+    Bukkit.getWorld("world").setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
     Bukkit.getWorld("world").setGameRule(GameRule.DO_WEATHER_CYCLE, false);
     Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
