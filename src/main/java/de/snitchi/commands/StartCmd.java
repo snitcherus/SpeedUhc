@@ -1,6 +1,7 @@
 package de.snitchi.commands;
 
 import de.snitchi.countdown.LobbyCount;
+import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
 import org.bukkit.Bukkit;
@@ -15,6 +16,10 @@ public class StartCmd implements CommandExecutor {
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
     if (!(sender instanceof Player)) {
+      return true;
+    }
+
+    if(SpeedUhcPlugin.gameState != GameState.LOBBY){
       return true;
     }
 
