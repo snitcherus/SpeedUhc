@@ -30,18 +30,18 @@ public class Scoreboard {
     String scoreboardKD = Messages.getMsg("Scoreboard.kd", formater.format(kd) + "");
 
     ScoreboardSet setBoard = new ScoreboardSet();
-    setBoard.set(player, title, empty, scoreboardKills, scoreboardDeaths,empty, scoreboardKD,
-        empty);
+    setBoard.set(player, title, empty, scoreboardKills, scoreboardDeaths, empty, scoreboardKD, empty);
 
   }
 
-  public static void setIngameBoard(Player player){
+  public static void setIngameBoard(Player player) {
+
+    int borderSize = (int) Bukkit.getServer().getWorld("world").getWorldBorder().getSize();
 
     String title = Messages.getMsg("Scoreboard.title");
     String empty = Messages.getMsg("Scoreboard.empty");
-    String border = Messages.getMsg("Scoreboard.border",
-        Bukkit.getServer().getWorld("world").getWorldBorder().getSize() + "");
-    String timeToCount = Messages.getMsg("Scoreboard.time", IngameCount.timeToCount + "");
+    String border = Messages.getMsg("Scoreboard.border", borderSize + "");
+    String timeToCount = Messages.getMsg("Scoreboard.time", IngameCount.timeToCount / 60  + 1 + "");
 
     ScoreboardSet setIngameBoard = new ScoreboardSet();
     setIngameBoard.set(player, title, empty, border, timeToCount);

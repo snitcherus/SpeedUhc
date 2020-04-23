@@ -22,7 +22,7 @@ Lobby:
 Ingame:
   count: "{prefix}&7Das Deathmatch beginnt in &a{0} &7Minuten!"
   deathmatch: "{prefix}&7Das Deathmatch beginnt nun!"
-  border: "{prefix}&7Die Border verkleinert sich!"
+  border: "&7Die Border verkleinert sich!"
 
 End:
   count: "{prefix}&7Das Spiel endet in &a{0} &7Sekunden!"
