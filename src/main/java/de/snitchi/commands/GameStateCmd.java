@@ -7,13 +7,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class GameStateCmd implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
-        Player player = (Player) sender;
+  @Override
+  public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
-        player.sendMessage(SpeedUhcPlugin.gameState + "");
+    Player player = (Player) sender;
 
-        return true;
-    }
+    player.sendMessage(SpeedUhcPlugin.gameState + "");
+
+    return true;
+  }
 }

@@ -9,33 +9,30 @@ import org.bukkit.entity.Player;
 
 public class EndCount {
 
-  private static int startID;
   public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("endTimeToCount");
+  private static int startID;
 
-  public static void start(){
+  public static void start() {
     Configuration config = SpeedUhcPlugin.getInstance().getConfig();
 
     //runnable
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
-      if(SpeedUhcPlugin.gameState != GameState.END){
+      if (SpeedUhcPlugin.gameState != GameState.END) {
         return;
       }
 
       Bukkit.broadcastMessage(Messages.getMsg("End.count", timeToCount + ""));
 
-      if(timeToCount == 0){
+      if (timeToCount == 0) {
 
-        for(Player player : Bukkit.getOnlinePlayers()){
+        for (Player player : Bukkit.getOnlinePlayers()) {
           player.kickPlayer("");
         }
 
         Bukkit.shutdown();
-
       }
       timeToCount--;
-    },0L,20L);
-
+    }, 0L, 20L);
   }
-
 }

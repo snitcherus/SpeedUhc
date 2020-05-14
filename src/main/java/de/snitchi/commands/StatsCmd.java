@@ -1,9 +1,9 @@
 package de.snitchi.commands;
 
-
 import de.snitchi.speeduhc.Messages;
 import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
+import java.text.NumberFormat;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -11,8 +11,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
-
-import java.text.NumberFormat;
 
 public class StatsCmd implements CommandExecutor {
 
@@ -87,8 +85,8 @@ public class StatsCmd implements CommandExecutor {
           target = Bukkit.getPlayer(args[0]);
 
           if (target == null) {
-            @SuppressWarnings("deprecation")
-            OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(args[0]);
+            @SuppressWarnings("deprecation") OfflinePlayer offlineTarget = Bukkit.getOfflinePlayer(
+                args[0]);
 
             if (!(config.isSet(offlineTarget.getUniqueId() + ".Kills"))) {
               Messages.send(player, "System.playerNotFound", args[0]);
@@ -102,8 +100,8 @@ public class StatsCmd implements CommandExecutor {
               kd = (double) kills / (double) deaths;
             }
 
-            Messages.send(player, "Stats.targetStats", offlineTarget.getName(), kills + "", deaths + "",
-                formater.format(kd) + "");
+            Messages.send(player, "Stats.targetStats", offlineTarget.getName(), kills + "",
+                deaths + "", formater.format(kd) + "");
             break;
           }
 
@@ -134,7 +132,7 @@ public class StatsCmd implements CommandExecutor {
       kd = (double) kills / (double) deaths;
     }
 
-    Messages.send(player, "Stats.targetStats", target.getName(), kills + "", deaths + "", formater.format(kd) + "");
-
+    Messages.send(player, "Stats.targetStats", target.getName(), kills + "", deaths + "",
+        formater.format(kd) + "");
   }
 }

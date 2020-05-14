@@ -8,6 +8,8 @@ import de.snitchi.commands.StartCmd;
 import de.snitchi.commands.StatsCmd;
 import de.snitchi.countdown.DeathmatchCount;
 import de.snitchi.countdown.EndCount;
+import de.snitchi.countdown.IngameCount;
+import de.snitchi.countdown.LobbyCount;
 import de.snitchi.countdown.ProtectionCount;
 import de.snitchi.listener.BlockBreakListener;
 import de.snitchi.listener.CraftListener;
@@ -18,23 +20,20 @@ import de.snitchi.listener.PlayerDeathListener;
 import de.snitchi.listener.QuitListener;
 import de.snitchi.listener.RegenerationListener;
 import de.snitchi.manager.GameState;
-import de.snitchi.countdown.IngameCount;
-import de.snitchi.countdown.LobbyCount;
 import de.snitchi.manager.PlayerManager;
 import de.snitchi.manager.PlayerState;
-import org.bukkit.Bukkit;
-import org.bukkit.GameRule;
-import org.bukkit.configuration.Configuration;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.UUID;
+import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpeedUhcPlugin extends JavaPlugin {
 
@@ -47,6 +46,10 @@ public class SpeedUhcPlugin extends JavaPlugin {
   private Configuration msgConfig;
   private FileConfiguration userConfig;
   //private FileConfiguration NAMEConfig;
+
+  public static SpeedUhcPlugin getInstance() {
+    return instance;
+  }
 
   @Override
   public void onEnable() {
@@ -66,21 +69,6 @@ public class SpeedUhcPlugin extends JavaPlugin {
     DeathmatchCount.start();
     EndCount.start();
     ProtectionCount.start();
-  }
-
-  public static void worldSettings(){
-    Bukkit.getWorld("world").setAutoSave(false);
-    Bukkit.getWorld("world").setStorm(false);
-    Bukkit.getWorld("world").setTime(800);
-    Bukkit.getWorld("world").setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-    Bukkit.getWorld("world").setGameRule(GameRule.DO_WEATHER_CYCLE, false);
-    Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
-
-    Bukkit.getWorld("world").getWorldBorder().setSize(1000);
-  }
-
-  public static SpeedUhcPlugin getInstance() {
-    return instance;
   }
 
   public void loadConfig() {
@@ -103,6 +91,16 @@ public class SpeedUhcPlugin extends JavaPlugin {
     return YamlConfiguration.loadConfiguration(file);
   }
 
+  private void registerCommands() {
+    // getCommand("Name").setExecutor(new NameCmd());
+    getCommand("damage").setExecutor(new DamageCmd());
+    getCommand("head").setExecutor(new HeadCmd());
+    getCommand("setlobby").setExecutor(new SetLobbyCmd());
+    getCommand("stats").setExecutor(new StatsCmd());
+    getCommand("gamestate").setExecutor(new GameStateCmd());
+    getCommand("start").setExecutor(new StartCmd());
+  }
+
   private void registerListener() {
     // getServer().getPluginManager().registerEvents(new ListenerName(), this);
     getServer().getPluginManager().registerEvents(new RegenerationListener(), this);
@@ -113,19 +111,17 @@ public class SpeedUhcPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new InteractListener(), this);
     getServer().getPluginManager().registerEvents(new ImportantListener(), this);
     getServer().getPluginManager().registerEvents(new CraftListener(), this);
-
   }
 
+  public static void worldSettings() {
+    Bukkit.getWorld("world").setAutoSave(false);
+    Bukkit.getWorld("world").setStorm(false);
+    Bukkit.getWorld("world").setTime(800);
+    Bukkit.getWorld("world").setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+    Bukkit.getWorld("world").setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+    Bukkit.getWorld("world").setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
 
-  private void registerCommands() {
-    // getCommand("Name").setExecutor(new NameCmd());
-    getCommand("damage").setExecutor(new DamageCmd());
-    getCommand("head").setExecutor(new HeadCmd());
-    getCommand("setlobby").setExecutor(new SetLobbyCmd());
-    getCommand("stats").setExecutor(new StatsCmd());
-    getCommand("gamestate").setExecutor(new GameStateCmd());
-    getCommand("start").setExecutor(new StartCmd());
-
+    Bukkit.getWorld("world").getWorldBorder().setSize(1000);
   }
 
   public Configuration getMsgConfig() {

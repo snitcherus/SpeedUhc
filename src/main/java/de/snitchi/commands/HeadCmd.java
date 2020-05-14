@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class HeadCmd implements CommandExecutor {
+
   @Override
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
@@ -23,14 +24,14 @@ public class HeadCmd implements CommandExecutor {
       return true;
     }
 
-    if(args.length != 1){
+    if (args.length != 1) {
       Messages.send(player, "Head.usage");
       return true;
     }
 
     int amount = Integer.parseInt(args[0]);
 
-    if(amount <= 0){
+    if (amount <= 0) {
       Messages.send(player, "Head.usage");
       return true;
     }

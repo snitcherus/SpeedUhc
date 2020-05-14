@@ -1,7 +1,9 @@
 package de.snitchi.listener;
 
+import com.google.common.collect.Maps;
 import de.snitchi.manager.GameState;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
+import java.util.Map;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -12,11 +14,16 @@ import org.bukkit.inventory.ItemStack;
 
 public class BlockBreakListener implements Listener {
 
-  private ItemStack itemStack = new ItemStack(Material.AIR);
+  private final Map<Material, Drop> dropMapper = Maps.newHashMap();
+
+  public BlockBreakListener() {
+    dropMapper.put(Material.COAL_ORE, new Drop(1, Material.TORCH, 2));
+    dropMapper.put(Material.IRON_ORE, new Drop(1, Material.IRON_INGOT, 2));
+    dropMapper.put(Material.OAK_LOG, new Drop(Material.OAK_PLANKS, 4));
+  }
 
   @EventHandler
   public void onBreak(BlockBreakEvent event) {
-
     Block block = event.getBlock();
     Player player = event.getPlayer();
 
@@ -24,82 +31,52 @@ public class BlockBreakListener implements Listener {
       return;
     }
 
-    switch (block.getType()) {
-      case IRON_ORE:
-        instantOreSmelt(player, Material.IRON_INGOT, block);
-        break;
-      case GOLD_ORE:
-        instantOreSmelt(player, Material.GOLD_INGOT, block);
-        break;
-      case COAL_ORE:
-        instantOreSmelt(player, Material.TORCH, block);
-        break;
-      case ACACIA_LOG:
-        instantLogSmelt(Material.ACACIA_PLANKS, block);
-        break;
-      case BIRCH_LOG:
-        instantLogSmelt(Material.BIRCH_PLANKS, block);
-        break;
-      case DARK_OAK_LOG:
-        instantLogSmelt(Material.DARK_OAK_PLANKS, block);
-        break;
-      case JUNGLE_LOG:
-        instantLogSmelt(Material.JUNGLE_PLANKS, block);
-        break;
-      case OAK_LOG:
-        instantLogSmelt(Material.OAK_PLANKS, block);
-        break;
-      case SPRUCE_LOG:
-        instantLogSmelt(Material.SPRUCE_PLANKS, block);
-        break;
-      case GRASS_BLOCK:
-        instantBlockSmelt(Material.DIRT, block);
-        break;
-      default:
-        break;
-    }
-  }
-
-  /**
-   * @param player   the block breaker
-   * @param material the dropped item
-   * @param block    the breaked block
-   */
-
-  public void instantOreSmelt(Player player, Material material, Block block) {
-
-    if (player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_PICKAXE)) {
-      return;
-    }
-    if (player.getInventory().getItemInMainHand().getType().equals(Material.GOLDEN_PICKAXE)) {
+    Drop drop = dropMapper.get(block.getType());
+    if (drop == null) {
       return;
     }
 
+    player.giveExp(drop.getExperience());
     block.setType(Material.AIR);
-    player.giveExp(2);
-    itemStack = new ItemStack(material);
-    block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
+    block.getLocation().getWorld().dropItemNaturally(block.getLocation(), drop.getItemStack());
   }
 
-  /**
-   * @param material the dropped item
-   * @param block    the breaked block
-   */
-  public void instantLogSmelt(Material material, Block block) {
-    block.setType(Material.AIR);
-    itemStack = new ItemStack(material);
-    itemStack.setAmount(4);
-    block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
-  }
+  private final class Drop {
 
-  /**
-   * @param material the dropped item
-   * @param block    the breaked block
-   */
-  public void instantBlockSmelt(Material material, Block block) {
-    block.setType(Material.AIR);
-    itemStack = new ItemStack(material);
-    itemStack.setAmount(1);
-    block.getLocation().getWorld().dropItemNaturally(block.getLocation(), itemStack);
+    private final int experience;
+    private final ItemStack itemStack;
+
+    private Drop(ItemStack itemStack) {
+      this(0, itemStack);
+    }
+
+    private Drop(int experience, ItemStack itemStack) {
+      this.experience = experience;
+      this.itemStack = itemStack;
+    }
+
+    private Drop(int experience, Material material, int amount) {
+      this(experience, new ItemStack(material, amount));
+    }
+
+    private Drop(int experience, Material material) {
+      this(experience, new ItemStack(material));
+    }
+
+    private Drop(Material material, int amount) {
+      this(0, new ItemStack(material, amount));
+    }
+
+    private Drop(Material material) {
+      this(0, new ItemStack(material));
+    }
+
+    public ItemStack getItemStack() {
+      return itemStack;
+    }
+
+    public int getExperience() {
+      return experience;
+    }
   }
 }

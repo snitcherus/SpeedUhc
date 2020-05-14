@@ -3,9 +3,8 @@ package de.snitchi.listener;
 import de.snitchi.manager.GameState;
 import de.snitchi.someapi.ItemBuilder;
 import de.snitchi.speeduhc.Messages;
-import de.snitchi.speeduhc.Scoreboard;
 import de.snitchi.speeduhc.SpeedUhcPlugin;
-import org.bukkit.Bukkit;
+import java.util.UUID;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
@@ -14,8 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-
-import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
 
@@ -83,13 +80,13 @@ public class PlayerDeathListener implements Listener {
       return;
     }
 
-    String killMessage = Messages.getMsg("System.kill", player.getDisplayName(), target.getDisplayName());
+    String killMessage = Messages.getMsg("System.kill", player.getDisplayName(),
+        target.getDisplayName());
     ((PlayerDeathEvent) event).setDeathMessage(killMessage);
 
     //Messages
     Messages.send(player, ".System.death", target.getDisplayName());
     Messages.send(target, ".System.killer", player.getDisplayName());
-
   }
 
   public void BuildPlayerHead(PlayerDeathEvent event) {

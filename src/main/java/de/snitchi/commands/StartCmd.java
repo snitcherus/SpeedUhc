@@ -12,6 +12,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
 public class StartCmd implements CommandExecutor {
+
   @Override
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
@@ -19,7 +20,7 @@ public class StartCmd implements CommandExecutor {
       return true;
     }
 
-    if(SpeedUhcPlugin.gameState != GameState.LOBBY){
+    if (SpeedUhcPlugin.gameState != GameState.LOBBY) {
       return true;
     }
 
@@ -34,9 +35,9 @@ public class StartCmd implements CommandExecutor {
 
     int playersToStart = config.getInt("playersToStart");
 
-    if(Bukkit.getOnlinePlayers().size() < playersToStart){
+    if (Bukkit.getOnlinePlayers().size() < playersToStart) {
 
-      Messages.send(player,"Lobby.notStart");
+      Messages.send(player, "Lobby.notStart");
 
       return true;
     }

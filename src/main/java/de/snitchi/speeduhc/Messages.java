@@ -7,6 +7,10 @@ import org.bukkit.entity.Player;
 
 public class Messages {
 
+  public static void send(Player player, String key, String... replaces) {
+    player.sendMessage(getMsg(key, replaces));
+  }
+
   public static String getMsg(String key, String... replaces) {
     Configuration msgConfig = SpeedUhcPlugin.getInstance().getMsgConfig();
     String msg = msgConfig.getString(key);
@@ -17,13 +21,11 @@ public class Messages {
     for (int i = 0; i < replaces.length; i++) {
       message = message.replace("{" + i + "}", replaces[i]);
     }
-    message = message.replace("{prefix}", ChatColor.translateAlternateColorCodes('&', msgConfig.getString("prefix")));
-    //message = message.replace("{msg}", ChatColor.translateAlternateColorCodes('&', msgConfig.getString("msgprefix")));
+    message = message.replace("{prefix}",
+        ChatColor.translateAlternateColorCodes('&', msgConfig.getString("prefix")));
+    //message = message.replace("{msg}", ChatColor.translateAlternateColorCodes('&', msgConfig
+    // .getString("msgprefix")));
     return message;
-  }
-
-  public static void send(Player player, String key, String... replaces) {
-    player.sendMessage(getMsg(key, replaces));
   }
 
   public static void send(CommandSender sender, String key, String... replaces) {

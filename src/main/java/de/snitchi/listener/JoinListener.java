@@ -20,7 +20,7 @@ import org.bukkit.potion.PotionEffect;
 public class JoinListener implements Listener {
 
   @EventHandler
-  public void onFirstJoin(PlayerJoinEvent event){
+  public void onFirstJoin(PlayerJoinEvent event) {
 
     Player player = event.getPlayer();
     ConfigCheck(player);
@@ -33,7 +33,7 @@ public class JoinListener implements Listener {
     builder.setAmount(1);
     Inventory inventory = player.getInventory();
 
-    switch(gameState){
+    switch (gameState) {
       case LOBBY:
 
         PlayerStuffCheck(player, GameMode.ADVENTURE);
@@ -43,8 +43,8 @@ public class JoinListener implements Listener {
 
         Location location = (Location) config.get("Game.Lobby.pos");
 
-        if(location == null){
-         location = Bukkit.getServer().getWorld("world").getSpawnLocation();
+        if (location == null) {
+          location = Bukkit.getServer().getWorld("world").getSpawnLocation();
         }
 
         player.teleport(location);
@@ -65,11 +65,11 @@ public class JoinListener implements Listener {
     }
   }
 
-  public void ConfigCheck(Player player){
+  public void ConfigCheck(Player player) {
 
     Configuration config = SpeedUhcPlugin.getInstance().getUserConfig();
 
-    if(!(config.isSet(player.getUniqueId() + ""))){
+    if (!(config.isSet(player.getUniqueId() + ""))) {
 
       config.set(player.getUniqueId() + ".Name", player.getDisplayName());
       config.set(player.getUniqueId() + ".Coins", 0);
@@ -86,12 +86,12 @@ public class JoinListener implements Listener {
     }
   }
 
-  public void PlayerStuffCheck(Player player, GameMode gameMode){
+  public void PlayerStuffCheck(Player player, GameMode gameMode) {
 
     player.getInventory().clear();
     player.getActivePotionEffects().clear();
 
-    for(PotionEffect effect : player.getActivePotionEffects()){
+    for (PotionEffect effect : player.getActivePotionEffects()) {
       player.removePotionEffect(effect.getType());
     }
 

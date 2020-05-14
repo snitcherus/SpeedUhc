@@ -1,0 +1,14 @@
+name: '${project.name}'
+description: '${project.description}'
+version: '1.0.0'
+author: 'Snitchi'
+main: 'de.snitchi.speeduhc.${project.name}Plugin'
+api-version: 1.15
+
+commands:
+  damage:
+  head:
+  setlobby:
+  stats:
+  gamestate:
+  start:

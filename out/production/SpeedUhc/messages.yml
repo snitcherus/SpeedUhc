@@ -1,0 +1,68 @@
+prefix: '&7[&cSpeedUHC&7]&r '
+msgprefix: '&8[&cMSG&8]&r '
+
+System:
+  playerNotFound: "{prefix}&7Der Spieler &e{0} &7wurde nicht gefunden!"
+  noPerms: "{prefix}&cDazu hast du keine Rechte"
+  suicide: "{prefix}&7Der Spieler &e{0} &7ist gestorben!"
+  kill: "{prefix}&e{0} &7wurde von &e{1} &7umgebracht!"
+  death: "{prefix}&7Du wurdest von &e{0} &7umgebracht!"
+  killer: "{prefix}&7Du hast &e{0} &7umgebracht!"
+
+Lobby:
+  usage: "{prefix}&7Richtige Nutzung: &c/setlobby"
+  success: "{prefix}&7Du hast die Lobby &aerfolgreich &7gesetzt!"
+  count: "{prefix}&7Das Spiel beginnt in &a{0} &7Sekunden!"
+  needPlayers: "{prefix}&7Es fehlen &e{0} &7Spieler zum Starten!"
+  join: "{prefix}&7Der Spieler &e{0} &7hat das Spiel betreten!"
+  quit: "{prefix}&7Der Spieler &e{0} &7hat das Spiel verlassen!"
+  start: "{prefix}&7Du hast das Spiel gestartet!"
+  notStart: "{prefix}&7Das Spiel kann nicht gestartet werden, weil zu wenige Spieler in der Lobby sind!"
+
+Ingame:
+  count: "{prefix}&7Das Deathmatch beginnt in &a{0} &7Minuten!"
+  deathmatch: "{prefix}&7Das Deathmatch beginnt nun!"
+  border: "&7Die Border verkleinert sich!"
+  protectionTime: "{prefix}&7Die Schutzzeit endet in &e{0} &7Minuten!"
+  protectionTimeEnd: "{prefix}&7Die Schutzzeit ist vorbei!"
+
+End:
+  count: "{prefix}&7Das Spiel endet in &a{0} &7Sekunden!"
+
+Deathmatch:
+  count: "{prefix}&7Das Deathmatch endet in &a{0} &7Minuten!"
+  end: "{prefix}&7Das Deathmatch ist beendet."
+
+Spawn:
+  set: "{prefix}&7Der Spawn &e{0} &7wurde gesetzt!"
+
+Stats:
+  stats: "&7------> Statistiken <------\n&7➤ &cKills &7>> &b{0}\n&7➤ &cTode &7>> &b{1}\n&7➤ &cK/D &7>> &b{2}"
+  targetStats: "&7------> Statistiken von &3{0} &7<------\n&7➤ &cKills &7>> &b{1}\n&7➤ &cTode &7>> &b{2}\n&7➤ &cK/D &7>> &b{3}"
+  resetUsage: "{prefix}&7Richtige Nutzung: &c/reset [name]"
+  reset: "{prefix}&7Du hast die Stats von &e{0} &7 zurückgesetzt!"
+  targetReset: "{prefix}&7Deine Stats wurden zurückgesetzt!"
+  usage: "{prefix}&7Richtige Nutzung: &c/stats &7|| &c/stats [name]"
+
+Game:
+  begin: "{prefix}&7Das Spiel beginnt nun!"
+
+Damage:
+  usage: "{prefix}&7Richtige Nutzung: &c/damage [name] [number of hearts]"
+  success: "{prefix}&aDu hast dir &e{0} &aHerzen abgezogen!"
+  successTarget: "{prefix}&aDu hast &e{0} {1} &aHerzen abgezogen!"
+  target: "{prefix}&aDir wurden &e{0} &aHerzen von &e{1} &aabzezogen!"
+
+Head:
+  usage: "{prefix}&7Richtige Nutzung: &c/head [amount]"
+  success: "{prefix}&aDu hast dir einen &3Player-Head &agegeben!"
+
+Scoreboard:
+  title: "&cSpeed-UHC"
+  empty: "&r"
+  kills: "&eKills &8: &e{0}"
+  deaths: "&eDeaths &8: &e{0}"
+  kd: "&eK/D &8: &e{0}"
+  border: "&7Border Size || &e{0}"
+  time: "&7Time to play || &e{0}"
+  protectionTime: "&7Protection Time || &e{0}"

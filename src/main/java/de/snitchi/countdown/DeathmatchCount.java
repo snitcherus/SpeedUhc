@@ -7,16 +7,17 @@ import org.bukkit.Bukkit;
 
 public class DeathmatchCount {
 
+  public static int timeToCount = SpeedUhcPlugin.getInstance()
+                                                .getConfig()
+                                                .getInt("deathmatchTimeToCount");
   private static int startID;
-  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("deathmatchTimeToCount");
 
-  public static void start(){
+  public static void start() {
 
     //runnable
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
-
-      if(SpeedUhcPlugin.gameState != GameState.DEATHMATCH){
+      if (SpeedUhcPlugin.gameState != GameState.DEATHMATCH) {
         return;
       }
 
@@ -26,7 +27,7 @@ public class DeathmatchCount {
         return;
       }
 
-      switch(timeToCount){
+      switch (timeToCount) {
         case 600:
         case 300:
         case 240:
@@ -41,6 +42,6 @@ public class DeathmatchCount {
       }
 
       timeToCount--;
-    },0L,20L);
+    }, 0L, 20L);
   }
 }

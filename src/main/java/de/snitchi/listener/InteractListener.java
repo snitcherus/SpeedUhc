@@ -20,7 +20,7 @@ public class InteractListener implements Listener {
 
     event.setCancelled(true);
 
-    if(player.getInventory().getHeldItemSlot() != 8){
+    if (player.getInventory().getHeldItemSlot() != 8) {
       return;
     }
 

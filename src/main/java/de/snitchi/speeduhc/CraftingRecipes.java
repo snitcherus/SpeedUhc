@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class CraftingRecipes {
@@ -21,19 +20,18 @@ public class CraftingRecipes {
     createRecipe(Material.IRON_PICKAXE, Enchantment.DIG_SPEED, 1, "Enchanted_Ciron_Pickaxe");
     createRecipe(Material.IRON_AXE, Enchantment.DIG_SPEED, 1, "Enchanted_Ciron_Axe");
 
-
     createUnenchantPickaxeRecipe(Material.IRON_PICKAXE, "Ciron_Pickaxe");
     createUnenchantAxeRecipe(Material.IRON_AXE, "Ciron_Axe");
-
   }
 
   /**
-   * @param material needed Material
-   * @param enchantment enchantment result
+   * @param material         needed Material
+   * @param enchantment      enchantment result
    * @param enchantmentLevel enchantment level
-   * @param recipeName recipe name
+   * @param recipeName       recipe name
    */
-  public static void createRecipe(Material material, Enchantment enchantment, int enchantmentLevel, String recipeName){
+  public static void createRecipe(Material material, Enchantment enchantment, int enchantmentLevel,
+                                  String recipeName) {
     ItemBuilder builder = new ItemBuilder(material);
     builder.addEnchant(enchantment, enchantmentLevel);
 
@@ -48,10 +46,9 @@ public class CraftingRecipes {
     recipe.setIngredient('E', material);
 
     Bukkit.addRecipe(recipe);
-
   }
 
-  public static void createUnenchantPickaxeRecipe(Material material, String recipeName){
+  public static void createUnenchantPickaxeRecipe(Material material, String recipeName) {
     ItemBuilder builder = new ItemBuilder(material);
 
     //Recipe Name
@@ -66,10 +63,9 @@ public class CraftingRecipes {
     recipe.setIngredient('S', Material.STICK);
 
     Bukkit.addRecipe(recipe);
-
   }
 
-  public static void createUnenchantAxeRecipe(Material material, String recipeName){
+  public static void createUnenchantAxeRecipe(Material material, String recipeName) {
     ItemBuilder builder = new ItemBuilder(material);
 
     //Recipe Name
@@ -84,6 +80,5 @@ public class CraftingRecipes {
     recipe.setIngredient('S', Material.STICK);
 
     Bukkit.addRecipe(recipe);
-
   }
 }

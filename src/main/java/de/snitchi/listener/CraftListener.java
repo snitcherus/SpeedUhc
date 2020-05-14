@@ -23,7 +23,7 @@ public class CraftListener implements Listener {
     }
   }
 
-  public static void checkExp(Player player, CraftItemEvent event){
+  public static void checkExp(Player player, CraftItemEvent event) {
     if (player.getLevel() < 1) {
       event.setCancelled(true);
       return;

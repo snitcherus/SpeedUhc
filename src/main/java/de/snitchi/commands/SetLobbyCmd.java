@@ -9,6 +9,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
 public class SetLobbyCmd implements CommandExecutor {
+
   @Override
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
@@ -22,7 +23,7 @@ public class SetLobbyCmd implements CommandExecutor {
       return true;
     }
 
-    if(args.length != 0){
+    if (args.length != 0) {
       Messages.send(player, "Lobby.usage");
       return true;
     }

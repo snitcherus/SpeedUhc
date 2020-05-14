@@ -7,18 +7,18 @@ import org.bukkit.Bukkit;
 
 public class ProtectionCount {
 
-  private static int startID;
   public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("protectionTime");
+  private static int startID;
 
-  public static void start(){
+  public static void start() {
 
     startID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpeedUhcPlugin.getInstance(), () -> {
 
-      if(SpeedUhcPlugin.gameState != GameState.INGAME){
+      if (SpeedUhcPlugin.gameState != GameState.INGAME) {
         return;
       }
 
-      switch(timeToCount){
+      switch (timeToCount) {
         case 10:
         case 5:
         case 4:
@@ -33,8 +33,6 @@ public class ProtectionCount {
           break;
       }
       timeToCount--;
-    },0L, 1200L);
-
+    }, 0L, 1200L);
   }
-
 }

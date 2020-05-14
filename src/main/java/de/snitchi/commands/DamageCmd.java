@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class DamageCmd implements CommandExecutor {
+
   @Override
   public boolean onCommand(CommandSender sender, Command command, String lbl, String[] args) {
 
@@ -52,12 +53,11 @@ public class DamageCmd implements CommandExecutor {
         }
 
         Player target = Bukkit.getPlayer(args[0]);
-
         if (target == null) {
           Messages.send(player, "System.playerNotFound", args[0]);
           break;
         }
-
+        
         if (target == player) {
           player.damage(damage);
           Messages.send(player, "Damage.success", damage + "");

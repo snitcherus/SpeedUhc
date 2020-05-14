@@ -9,9 +9,14 @@ import org.bukkit.entity.Player;
 
 public class IngameCount {
 
+  private static int timeToCount = SpeedUhcPlugin.getInstance()
+                                                .getConfig()
+                                                .getInt("ingameTimeToCount");
   private static int startID;
-  public static int timeToCount = SpeedUhcPlugin.getInstance().getConfig().getInt("ingameTimeToCount");
 
+  /**
+   * Starts the ingame counter.
+   */
   public static void start() {
 
     Bukkit.getWorld("world").getWorldBorder().setSize(300);
@@ -22,7 +27,7 @@ public class IngameCount {
         return;
       }
 
-      for(Player player : Bukkit.getOnlinePlayers()){
+      for (Player player : Bukkit.getOnlinePlayers()) {
         Scoreboard.setIngameBoard(player);
       }
 
@@ -78,24 +83,26 @@ public class IngameCount {
 
           Bukkit.getScheduler().cancelTask(startID);
           break;
+        default:
+          break;
       }
       timeToCount--;
     }, 0, 20); //1200 Ticks = One Minute
   }
 
   /**
-   * @param size new border size
-   * @param time time the border need to shrink
+   * Shrinks the border.
+   * @param size        new border size
+   * @param time        time the border need to shrink
    * @param ingameCount ingame message of the ingameCount
    */
 
   public static void setBorder(int size, int time, boolean ingameCount) {
-    //Bukkit.broadcastMessage(Messages.getMsg("Ingame.border"));
 
     String title = Messages.getMsg("Scoreboard.title");
     String border = Messages.getMsg("Ingame.border");
 
-    for(Player player : Bukkit.getOnlinePlayers()){
+    for (Player player : Bukkit.getOnlinePlayers()) {
       player.sendTitle(title, border, 10, 70, 20);
     }
 
